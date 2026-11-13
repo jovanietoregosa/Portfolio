@@ -108,6 +108,9 @@ section > header .label { margin-bottom: 8px; display: block; }
 .project h3 { font-size: clamp(18px, 1vw + 14px, 22px); }
 .project .meta { display: flex; flex-wrap: wrap; gap: 8px 16px; color: var(--muted); font-size: 14px; }
 .project p { color: var(--muted); }
+.project-actions { display: flex; flex-wrap: wrap; gap: 8px 16px; }
+.project-actions a { transition: color .15s ease; }
+.project-actions a:hover { color: color-mix(in srgb, var(--accent) 75%, var(--ink)); }
 
 .timeline { display: grid; gap: 16px; }
 .row { display: grid; grid-template-columns: minmax(0, 150px) minmax(0, 1fr); gap: 8px 20px; padding-bottom: 16px; border-bottom: 1px solid var(--line); min-width: 0; }
@@ -291,7 +294,10 @@ footer { margin-top: 64px; padding-top: 20px; border-top: 1px solid var(--line);
           <h3>App Dev: Cutify</h3>
           <div class="meta"><span class="mono">Role: Developer</span><span class="mono">Stack: Android Studio &amp; Firebase Console</span></div>
           <p>Cutify is an Android barbershop queueing app where customers book a barber and follow the queue, while barbers and a super admin manage the line and staff.</p>
-          <a href="https://github.com/jovanietoregosa/AppDev" target="_blank" rel="noopener">View on GitHub</a>
+          <div class="project-actions">
+            <a href="https://github.com/jovanietoregosa/AppDev" target="_blank" rel="noopener">View on GitHub</a>
+            <a href="https://jtorrs.github.io/cutify-landing/">About App</a>
+          </div>
         </article>
         <article class="card project">
           <h3><mark class="ph">Another project</mark></h3>
