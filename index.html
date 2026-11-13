@@ -54,13 +54,13 @@ p { margin: 0; max-width: 65ch; }
 .label { font-family: var(--font-mono); font-size: 12px; letter-spacing: .12em; text-transform: uppercase; color: var(--muted); }
 .ph { background: var(--ph-bg); color: var(--ph-ink); padding: 0 .3em; border-radius: 3px; }
 
-nav { position: sticky; top: 0; z-index: 100; display: flex; flex-wrap: wrap; gap: 12px 24px; justify-content: space-between; align-items: center; padding-block: 20px; min-width: 0; }
+nav { position: sticky; top: 0; z-index: 100; display: flex; flex-wrap: wrap; gap: 12px 24px; justify-content: space-between; align-items: center; padding-block: 18px; min-width: 0; }
 nav::before { content: ""; position: absolute; inset: 0 -100vmax -20px; background: color-mix(in srgb, var(--bg) 45%, transparent); backdrop-filter: blur(12px); mask-image: linear-gradient(to bottom, #000 55%, transparent); -webkit-mask-image: linear-gradient(to bottom, #000 55%, transparent); z-index: -1; }
-nav .brand { position: relative; display: inline-flex; align-items: center; gap: 10px; font-family: var(--font-mono); font-weight: 500; font-size: 14px; letter-spacing: .08em; text-transform: lowercase; }
+nav .brand { position: relative; display: inline-flex; align-items: center; gap: 10px; font-family: var(--font-mono); font-weight: 500; font-size: 18px; letter-spacing: .08em; text-transform: lowercase; }
 nav .brand img { width: 36px; height: 36px; border-radius: 50%; object-fit: cover; border: 2px solid var(--accent); display: block; }
 nav .brand::after { content: ""; position: absolute; left: 0; bottom: -6px; width: 100%; height: 1px; background: linear-gradient(90deg, var(--accent), transparent); transform: scaleX(0); transform-origin: left; transition: transform .25s ease; }
 nav .brand:hover::after, nav .brand:focus-visible::after { transform: scaleX(1); }
-nav ul { display: flex; flex-wrap: wrap; gap: 8px 22px; list-style: none; margin: 0; padding: 0; font-size: 14px; }
+nav ul { display: flex; flex-wrap: wrap; gap: 8px 28px; list-style: none; margin: 0; padding: 0; font-size: 17px; font-weight: 500; }
 nav ul a { position: relative; color: var(--muted); text-decoration: none; }
 nav ul a::after { content: ""; position: absolute; left: 0; bottom: -5px; width: 100%; height: 1px; background: currentColor; transform: scaleX(0); transform-origin: left; transition: transform .2s ease; }
 nav ul a:hover, nav ul a:focus-visible { color: var(--accent); }
@@ -141,7 +141,7 @@ footer { margin-top: 64px; padding-top: 20px; border-top: 1px solid var(--line);
 @media (max-width: 480px) {
   body { padding-left: max(12px, env(safe-area-inset-left, 0px)); padding-right: max(12px, env(safe-area-inset-right, 0px)); }
   nav { gap: 10px 12px; }
-  nav ul { flex-basis: 100%; gap: 8px 16px; }
+  nav ul { flex-basis: 100%; gap: 8px 16px; font-size: 15px; }
   .cta { align-items: stretch; }
   .cta .btn { width: 100%; text-align: center; }
   .chips { min-width: 0; }
