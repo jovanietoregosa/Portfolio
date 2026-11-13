@@ -52,7 +52,8 @@ p { margin: 0; max-width: 65ch; }
 .ph { background: var(--ph-bg); color: var(--ph-ink); padding: 0 .3em; border-radius: 3px; }
 
 nav { display: flex; flex-wrap: wrap; gap: 12px 24px; justify-content: space-between; align-items: center; padding-block: 20px; border-bottom: 1px solid var(--line); }
-nav .brand { position: relative; font-family: var(--font-mono); font-weight: 500; font-size: 14px; letter-spacing: .08em; text-transform: lowercase; }
+nav .brand { position: relative; display: inline-flex; align-items: center; gap: 10px; font-family: var(--font-mono); font-weight: 500; font-size: 14px; letter-spacing: .08em; text-transform: lowercase; }
+nav .brand img { width: 36px; height: 36px; border-radius: 50%; object-fit: cover; border: 2px solid var(--accent); display: block; }
 nav .brand::after { content: ""; position: absolute; left: 0; bottom: -6px; width: 100%; height: 1px; background: linear-gradient(90deg, var(--accent), transparent); transform: scaleX(0); transform-origin: left; transition: transform .25s ease; }
 nav .brand:hover::after, nav .brand:focus-visible::after { transform: scaleX(1); }
 nav ul { display: flex; flex-wrap: wrap; gap: 8px 22px; list-style: none; margin: 0; padding: 0; font-size: 14px; }
@@ -128,6 +129,8 @@ footer { margin-top: 64px; padding-top: 20px; border-top: 1px solid var(--line);
   .layer, .row { grid-template-columns: minmax(0, 1fr); }
 }
 @media (prefers-reduced-motion: no-preference) {
+  nav .brand img { transition: transform .2s ease; }
+  nav .brand:hover img, nav .brand:focus-visible img { transform: scale(1.1); }
   .btn, .copy, nav ul a { transition: background-color .15s, color .15s, border-color .15s; }
   .btn.primary:hover { filter: brightness(1.08); }
 }
@@ -195,7 +198,7 @@ footer { margin-top: 64px; padding-top: 20px; border-top: 1px solid var(--line);
 
 <div class="wrap">
   <nav>
-    <span class="brand">jovanie.torregosa</span>
+    <span class="brand"><img src="photo.jpg" alt="Jovanie T. Torregosa">jovanie.torregosa</span>
     <ul>
       <li><a href="#about">About</a></li>
       <li><a href="#skills">Skills</a></li>
