@@ -1,0 +1,361 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title>Jovanie Torregosa Portfolio</title>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600&family=JetBrains+Mono:wght@400;500&family=Space+Grotesk:wght@500;600;700&display=swap">
+<style>
+/* Layout: left-aligned hero with an OJT "ID card" panel beside it, then plain stacked sections on a 12-col-ish grid */
+:root {
+  --bg: #f2f5f8;
+  --surface: #ffffff;
+  --ink: #12202c;
+  --muted: #55646f;
+  --line: #d6dee6;
+  --accent: #0b57d0;
+  --accent-ink: #ffffff;
+  --accent-soft: #e3edfd;
+  --ph-bg: #fff4cc;
+  --ph-ink: #6b4e00;
+  --font-display: "Space Grotesk", "Segoe UI", system-ui, sans-serif;
+  --font-body: "Inter", "Segoe UI", system-ui, sans-serif;
+  --font-mono: "JetBrains Mono", ui-monospace, "SFMono-Regular", Menlo, Consolas, monospace;
+}
+@media (prefers-color-scheme: dark) {
+  :root:not([data-theme="light"]) {
+    --bg: #0f171f; --surface: #172330; --ink: #e8eef4; --muted: #9db0bf; --line: #2a3a49;
+    --accent: #7ab0ff; --accent-ink: #0a1a2e; --accent-soft: #1c3150;
+    --ph-bg: #3a2f0d; --ph-ink: #f1d98a; color-scheme: dark;
+  }
+}
+:root[data-theme="dark"] {
+  --bg: #0f171f; --surface: #172330; --ink: #e8eef4; --muted: #9db0bf; --line: #2a3a49;
+  --accent: #7ab0ff; --accent-ink: #0a1a2e; --accent-soft: #1c3150;
+  --ph-bg: #3a2f0d; --ph-ink: #f1d98a; color-scheme: dark;
+}
+* { box-sizing: border-box; }
+body {
+  background: var(--bg); color: var(--ink);
+  font-family: var(--font-body); font-size: 16px; line-height: 1.6;
+  padding-left: max(16px, env(safe-area-inset-left, 0px));
+  padding-right: max(16px, env(safe-area-inset-right, 0px));
+  padding-block: 0 48px;
+}
+a { color: var(--accent); }
+a:focus-visible, button:focus-visible { outline: 3px solid var(--accent); outline-offset: 3px; border-radius: 4px; }
+.wrap { max-width: 1040px; margin: 0 auto; }
+h1, h2, h3 { font-family: var(--font-display); line-height: 1.1; margin: 0; text-wrap: balance; }
+p { margin: 0; max-width: 65ch; }
+.mono { font-family: var(--font-mono); font-size: 13px; letter-spacing: .04em; }
+.label { font-family: var(--font-mono); font-size: 12px; letter-spacing: .12em; text-transform: uppercase; color: var(--muted); }
+.ph { background: var(--ph-bg); color: var(--ph-ink); padding: 0 .3em; border-radius: 3px; }
+
+nav { display: flex; flex-wrap: wrap; gap: 12px 24px; justify-content: space-between; align-items: center; padding-block: 20px; border-bottom: 1px solid var(--line); }
+nav .brand { position: relative; font-family: var(--font-mono); font-weight: 500; font-size: 14px; letter-spacing: .08em; text-transform: lowercase; }
+nav .brand::after { content: ""; position: absolute; left: 0; bottom: -6px; width: 100%; height: 1px; background: linear-gradient(90deg, var(--accent), transparent); transform: scaleX(0); transform-origin: left; transition: transform .25s ease; }
+nav .brand:hover::after, nav .brand:focus-visible::after { transform: scaleX(1); }
+nav ul { display: flex; flex-wrap: wrap; gap: 8px 22px; list-style: none; margin: 0; padding: 0; font-size: 14px; }
+nav ul a { position: relative; color: var(--muted); text-decoration: none; }
+nav ul a::after { content: ""; position: absolute; left: 0; bottom: -5px; width: 100%; height: 1px; background: currentColor; transform: scaleX(0); transform-origin: left; transition: transform .2s ease; }
+nav ul a:hover, nav ul a:focus-visible { color: var(--accent); }
+nav ul a:hover::after, nav ul a:focus-visible::after { transform: scaleX(1); }
+
+.hero { display: grid; grid-template-columns: minmax(0, 1.5fr) minmax(0, 1fr); gap: 40px; padding-block: 64px 56px; align-items: center; }
+.status { display: inline-flex; align-items: center; gap: 10px; background: linear-gradient(135deg, color-mix(in srgb, var(--accent-soft) 90%, white 10%), var(--surface)); color: var(--accent); padding: 6px 12px; border-radius: 999px; margin-bottom: 24px; border: 1px solid color-mix(in srgb, var(--accent) 25%, var(--line)); box-shadow: 0 8px 18px color-mix(in srgb, var(--accent) 12%, transparent); }
+.status::before { content: ""; width: 8px; height: 8px; border-radius: 50%; background: var(--accent); }
+.hero h1 { font-size: clamp(44px, 9vw, 92px); font-weight: 700; letter-spacing: -0.035em; text-shadow: 0 8px 28px color-mix(in srgb, var(--accent) 18%, transparent); }
+.hero h1 span { color: var(--accent); background: linear-gradient(135deg, var(--accent), color-mix(in srgb, var(--accent) 55%, #7ed4ff)); -webkit-background-clip: text; background-clip: text; color: transparent; }
+.hero .lede { margin-top: 24px; font-size: 18px; color: var(--muted); }
+.cta { display: flex; flex-wrap: wrap; gap: 12px; margin-top: 32px; }
+.btn { display: inline-block; padding: 12px 20px; border-radius: 8px; font-weight: 600; font-size: 15px; text-decoration: none; border: 1px solid var(--accent); }
+.btn.primary { background: linear-gradient(135deg, var(--accent), color-mix(in srgb, var(--accent) 76%, #7ed4ff)); color: var(--accent-ink); box-shadow: 0 12px 22px color-mix(in srgb, var(--accent) 26%, transparent); }
+.btn.ghost { color: var(--accent); background: color-mix(in srgb, var(--surface) 80%, transparent); }
+
+.card { position: relative; isolation: isolate; background: rgba(255,255,255,0.62); border: 1px solid var(--line); border-radius: 12px; padding: 24px; box-shadow: 0 18px 36px color-mix(in srgb, var(--ink) 8%, transparent); backdrop-filter: blur(10px); -webkit-backdrop-filter: blur(10px); overflow: hidden; }
+.card::before, .project::before { content: ""; position: absolute; inset: -50%; background: radial-gradient(circle at var(--pointer-x, 50%) var(--pointer-y, 50%), color-mix(in srgb, var(--accent) 18%, transparent), transparent 30%); opacity: 0; transition: opacity .25s ease; z-index: 0; }
+.card:hover::before, .project:hover::before { opacity: 1; }
+.card > *, .project > * { position: relative; z-index: 1; }
+@media (prefers-color-scheme: dark) {
+  .card { background: rgba(23, 35, 48, 0.72); }
+}
+.idcard dl { margin: 16px 0 0; display: grid; gap: 14px; }
+.idcard dt { font-family: var(--font-mono); font-size: 11px; letter-spacing: .12em; text-transform: uppercase; color: var(--muted); }
+.idcard dd { margin: 2px 0 0; font-weight: 500; }
+.idcard .top { display: flex; justify-content: space-between; gap: 12px; border-bottom: 1px dashed var(--line); padding-bottom: 14px; }
+
+section { padding-block: 56px 0; display: grid; grid-template-columns: minmax(0, 1fr) minmax(0, 3fr); gap: 24px 40px; }
+section > header h2 { font-size: 28px; letter-spacing: -0.02em; }
+section > header .label { margin-bottom: 8px; display: block; }
+
+.layers { display: grid; gap: 0; border: 1px solid var(--line); border-radius: 12px; background: var(--surface); overflow: hidden; }
+.layer { display: grid; grid-template-columns: minmax(0, 150px) minmax(0, 1fr); gap: 8px 20px; padding: 16px 20px; border-top: 1px solid var(--line); align-items: baseline; }
+.layer:first-child { border-top: 0; }
+.layer .label { color: var(--ink); }
+.chips { display: flex; flex-wrap: wrap; gap: 8px; }
+.chip { font-family: var(--font-mono); font-size: 13px; padding: 3px 10px; border: 1px solid var(--line); border-radius: 6px; background: linear-gradient(180deg, rgba(255,255,255,0.32), transparent); }
+
+.projects { display: grid; gap: 16px; }
+.project { position: relative; display: grid; gap: 12px; overflow: hidden; }
+.project::before { content: ""; position: absolute; inset: 0 auto 0 0; width: 3px; background: linear-gradient(180deg, transparent, var(--accent), transparent); opacity: 0; transition: opacity .2s ease; }
+.project:hover::before, .project:focus-within::before { opacity: 1; }
+.project h3 { font-size: 20px; }
+.project .meta { display: flex; flex-wrap: wrap; gap: 8px 16px; color: var(--muted); font-size: 14px; }
+.project p { color: var(--muted); }
+
+.timeline { display: grid; gap: 16px; }
+.row { display: grid; grid-template-columns: minmax(0, 150px) minmax(0, 1fr); gap: 8px 20px; padding-bottom: 16px; border-bottom: 1px solid var(--line); }
+.row:last-child { border-bottom: 0; }
+.row h3 { font-size: 18px; font-family: var(--font-body); font-weight: 600; letter-spacing: 0; }
+.row p { color: var(--muted); font-size: 15px; }
+
+.offer { display: grid; grid-template-columns: repeat(auto-fit, minmax(220px, 1fr)); gap: 16px; }
+.offer .card h3 { font-size: 18px; margin-bottom: 8px; }
+.offer .card p { color: var(--muted); font-size: 15px; }
+
+.contact dl { display: grid; gap: 14px; margin: 0; }
+.contact .item { display: flex; flex-wrap: wrap; gap: 4px 16px; align-items: baseline; }
+.contact dt { min-width: 90px; }
+.contact dd { margin: 0; overflow-wrap: anywhere; }
+.copy { font: inherit; font-size: 12px; background: none; border: 1px solid var(--line); color: var(--muted); border-radius: 6px; padding: 2px 8px; cursor: pointer; }
+.copy:hover { color: var(--accent); border-color: var(--accent); }
+
+footer { margin-top: 64px; padding-top: 20px; border-top: 1px solid var(--line); color: var(--muted); font-size: 13px; display: flex; flex-wrap: wrap; justify-content: space-between; gap: 8px; }
+
+@media (max-width: 760px) {
+  .hero { grid-template-columns: minmax(0, 1fr); padding-block: 40px; }
+  section { grid-template-columns: minmax(0, 1fr); padding-block-start: 44px; }
+  .layer, .row { grid-template-columns: minmax(0, 1fr); }
+}
+@media (prefers-reduced-motion: no-preference) {
+  .btn, .copy, nav ul a { transition: background-color .15s, color .15s, border-color .15s; }
+  .btn.primary:hover { filter: brightness(1.08); }
+}
+
+/* ---------- animated background ---------- */
+.bg { position: fixed; inset: 0; z-index: -1; overflow: hidden; pointer-events: none; }
+.bg i { position: absolute; border-radius: 50%; filter: blur(70px); opacity: .6; }
+.bg i:nth-child(1) { width: 46vmax; height: 46vmax; left: -14vmax; top: -16vmax; background: var(--accent-soft); }
+.bg i:nth-child(2) { width: 36vmax; height: 36vmax; right: -12vmax; top: 24vh; background: color-mix(in srgb, var(--accent) 24%, transparent); }
+.bg i:nth-child(3) { width: 34vmax; height: 34vmax; left: 28vw; bottom: -20vmax; background: var(--accent-soft); }
+.bg::after { content: ""; position: absolute; inset: 0; background-image: linear-gradient(var(--line) 1px, transparent 1px), linear-gradient(90deg, var(--line) 1px, transparent 1px); background-size: 56px 56px; opacity: .45; -webkit-mask-image: radial-gradient(ellipse at 50% 0%, #000 0%, transparent 72%); mask-image: radial-gradient(ellipse at 50% 0%, #000 0%, transparent 72%); }
+
+/* ---------- profile photo ---------- */
+@property --spin { syntax: "<angle>"; inherits: false; initial-value: 0deg; }
+.photo { position: relative; width: 100%; aspect-ratio: 5 / 4; padding: 4px; margin-top: 16px; border-radius: 20px; background: conic-gradient(from var(--spin), var(--accent), var(--accent-soft), var(--accent), var(--accent-soft), var(--accent)); }
+.photo-in { position: relative; width: 100%; height: 100%; border-radius: 16px; overflow: hidden; background: var(--surface); }
+.photo-in img { width: 100%; height: 100%; object-fit: cover; display: block; }
+.photo-in::after { content: ""; position: absolute; inset: 0; pointer-events: none; background: linear-gradient(105deg, transparent 38%, color-mix(in srgb, #fff 38%, transparent) 50%, transparent 62%); transform: translateX(-120%); }
+.photo-empty { height: 100%; display: grid; place-content: center; justify-items: center; gap: 6px; text-align: center; background: var(--accent-soft); }
+.photo-empty b { font-family: var(--font-display); font-size: 64px; line-height: 1; letter-spacing: -0.04em; color: var(--accent); }
+
+@media (prefers-reduced-motion: no-preference) {
+  @keyframes drift1 { to { transform: translate(8vmax, 6vmax) scale(1.12); } }
+  @keyframes drift2 { to { transform: translate(-9vmax, -5vmax) scale(.92); } }
+  @keyframes drift3 { to { transform: translate(6vmax, -8vmax) scale(1.1); } }
+  .bg i:nth-child(1) { animation: drift1 16s ease-in-out infinite alternate; }
+  .bg i:nth-child(2) { animation: drift2 20s ease-in-out infinite alternate; }
+  .bg i:nth-child(3) { animation: drift3 18s ease-in-out infinite alternate; }
+  @keyframes gridpan { to { background-position: 56px 56px; } }
+  .bg::after { animation: gridpan 5s linear infinite; }
+
+  @keyframes rise { from { opacity: 0; transform: translateY(18px); } to { opacity: 1; transform: none; } }
+  .hero > div > * { animation: rise .7s cubic-bezier(.2, .7, .2, 1) both; }
+  .hero > div > *:nth-child(2) { animation-delay: .08s; }
+  .hero > div > *:nth-child(3) { animation-delay: .16s; }
+  .hero > div > *:nth-child(4) { animation-delay: .24s; }
+  .idcard { animation: rise .8s cubic-bezier(.2, .7, .2, 1) .15s both; }
+
+  @keyframes spin { to { --spin: 360deg; } }
+  @keyframes float { 50% { transform: translateY(-8px); } }
+  @keyframes shine { 0%, 55% { transform: translateX(-120%); } 100% { transform: translateX(120%); } }
+  @keyframes kenburns { to { transform: scale(1.1); } }
+  @keyframes pulse { 0% { box-shadow: 0 0 0 0 color-mix(in srgb, var(--accent) 55%, transparent); } 100% { box-shadow: 0 0 0 10px transparent; } }
+  .photo { animation: spin 6s linear infinite, float 5s ease-in-out infinite; }
+  .photo-in::after { animation: shine 4.5s ease-in-out infinite; }
+  .photo-in img { animation: kenburns 12s ease-in-out infinite alternate; }
+  .status::before { animation: pulse 1.8s ease-out infinite; }
+
+  .card, .layer, .chip, .project, .btn { transition: transform .2s, border-color .2s, box-shadow .2s, color .2s; }
+  .card:hover { transform: translateY(-4px); box-shadow: 0 18px 36px color-mix(in srgb, var(--accent) 12%, transparent); }
+  .layer:hover { transform: translateX(4px); border-color: color-mix(in srgb, var(--accent) 55%, var(--line)); }
+  .chip:hover { transform: translateY(-2px); border-color: var(--accent); color: var(--accent); }
+  .project:hover { transform: translateY(-3px); border-color: var(--accent); box-shadow: 0 10px 24px color-mix(in srgb, var(--accent) 14%, transparent); }
+  .btn:hover { transform: translateY(-2px); }
+
+  @supports (animation-timeline: view()) {
+    section > * { animation: rise linear both; animation-timeline: view(); animation-range: entry 0% entry 45%; }
+  }
+}
+</style>
+</head>
+<body>
+
+<div class="bg" aria-hidden="true"><i></i><i></i><i></i></div>
+
+<div class="wrap">
+  <nav>
+    <span class="brand">jovanie.torregosa</span>
+    <ul>
+      <li><a href="#about">About</a></li>
+      <li><a href="#skills">Skills</a></li>
+      <li><a href="#projects">Projects</a></li>
+      <li><a href="#education">Education</a></li>
+      <li><a href="#contact">Contact</a></li>
+    </ul>
+  </nav>
+
+  <main>
+    <div class="hero">
+      <div>
+        <div class="status mono">Open for IT OJT</div>
+        <h1>Jovanie T. <span>Torregosa</span></h1>
+        <p class="lede">Fourth-year BSIT student at Bukidnon State University, looking for an on-the-job training placement where I can apply what I have learned in class to real systems and real users.</p>
+        <div class="cta">
+          <a class="btn primary" href="#projects">See my projects</a>
+          <a class="btn ghost" href="#contact">Contact me</a>
+        </div>
+      </div>
+      <aside class="card idcard" aria-label="OJT summary">
+        <div class="top">
+          <span class="label">OJT applicant</span>
+          <span class="mono">BSIT · 4th yr</span>
+        </div>
+        <div class="photo">
+          <!-- PHOTO: replace the .photo-empty div with <img src="..." alt="Jovanie T. Torregosa"> -->
+          <div class="photo-in" id="profile-photo">
+            <div class="photo-empty"><b>JT</b><span class="label">Your photo here</span></div>
+          </div>
+        </div>
+        <dl>
+          <div><dt>School</dt><dd>Bukidnon State University</dd></div>
+          <div><dt>Program</dt><dd>BS Information Technology</dd></div>
+          <div><dt>Preferred area</dt><dd><mark class="ph">Web dev / IT support / QA</mark></dd></div>
+          <div><dt>Required hours</dt><dd><mark class="ph">___ hours</mark></dd></div>
+          <div><dt>Available from</dt><dd><mark class="ph">Month, Year</mark></dd></div>
+        </dl>
+      </aside>
+    </div>
+
+    <section id="about">
+      <header><span class="label">About</span><h2>Who I am</h2></header>
+      <div style="display:grid;gap:16px">
+        <p>I am a BSIT student who enjoys building things that work and fixing things that do not. My coursework covers programming, databases, networking and systems analysis, and I am now ready to work with a team in a professional setting.</p>
+        <p><mark class="ph">Add 1–2 sentences about what you enjoy most in IT and what you want to learn during OJT.</mark></p>
+      </div>
+    </section>
+
+    <section id="skills">
+      <header><span class="label">Skills</span><h2>Tools I work with</h2></header>
+      <div class="layers">
+        <div class="layer"><span class="label">Front end</span><div class="chips"><span class="chip">HTML</span><span class="chip">CSS</span><span class="chip">JavaScript</span></div></div>
+        <div class="layer"><span class="label">Back end</span><div class="chips"><span class="chip">PHP</span><span class="chip">Python</span><span class="chip">Java</span></div></div>
+        <div class="layer"><span class="label">Database</span><div class="chips"><span class="chip">MySQL</span><span class="chip">ER design</span></div></div>
+        <div class="layer"><span class="label">Tools</span><div class="chips"><span class="chip">Git &amp; GitHub</span><span class="chip">VS Code</span><span class="chip">Figma</span></div></div>
+        <div class="layer"><span class="label">IT support</span><div class="chips"><span class="chip">Troubleshooting</span><span class="chip">Networking basics</span><span class="chip">Documentation</span></div></div>
+      </div>
+    </section>
+
+    <section id="projects">
+      <header><span class="label">Projects</span><h2>Selected work</h2></header>
+      <div class="projects">
+        <article class="card project">
+          <h3><mark class="ph">Capstone project title</mark></h3>
+          <div class="meta"><span class="mono">Role: <mark class="ph">your role</mark></span><span class="mono">Stack: <mark class="ph">PHP · MySQL · JS</mark></span></div>
+          <p><mark class="ph">One or two sentences: what problem it solves, who uses it, and what you built.</mark></p>
+          <a href="https://github.com/" rel="noopener">View on GitHub</a>
+        </article>
+        <article class="card project">
+          <h3><mark class="ph">Class or personal project</mark></h3>
+          <div class="meta"><span class="mono">Role: <mark class="ph">your role</mark></span><span class="mono">Stack: <mark class="ph">tools used</mark></span></div>
+          <p><mark class="ph">Short description and the result.</mark></p>
+        </article>
+        <article class="card project">
+          <h3><mark class="ph">Another project</mark></h3>
+          <div class="meta"><span class="mono">Role: <mark class="ph">your role</mark></span><span class="mono">Stack: <mark class="ph">tools used</mark></span></div>
+          <p><mark class="ph">Short description and the result.</mark></p>
+        </article>
+      </div>
+    </section>
+
+    <section id="education">
+      <header><span class="label">Education</span><h2>Background</h2></header>
+      <div class="timeline card">
+        <div class="row">
+          <span class="mono">2022 – present</span>
+          <div><h3>BS Information Technology</h3><p>Bukidnon State University. Currently in fourth year.</p></div>
+        </div>
+        <div class="row">
+          <span class="mono"><mark class="ph">Year</mark></span>
+          <div><h3><mark class="ph">Certificate, seminar or training</mark></h3><p><mark class="ph">Issuer and what you learned.</mark></p></div>
+        </div>
+      </div>
+    </section>
+
+    <section id="ojt">
+      <header><span class="label">OJT</span><h2>What I bring</h2></header>
+      <div class="offer">
+        <div class="card"><h3>Willing to learn</h3><p>I pick up new tools quickly and ask questions early instead of guessing.</p></div>
+        <div class="card"><h3>Reliable</h3><p>I meet deadlines, follow procedures and keep my work documented.</p></div>
+        <div class="card"><h3>Team ready</h3><p>I have worked in group projects and use Git to collaborate with others.</p></div>
+      </div>
+    </section>
+
+    <section id="contact" class="contact">
+      <header><span class="label">Contact</span><h2>Let's talk</h2></header>
+      <div class="card">
+        <dl>
+          <div class="item"><dt class="label">Email</dt><dd id="email"><mark class="ph">your.email@example.com</mark></dd><button class="copy" type="button" data-copy="email">Copy</button></div>
+          <div class="item"><dt class="label">Phone</dt><dd><mark class="ph">09XX XXX XXXX</mark></dd></div>
+          <div class="item"><dt class="label">GitHub</dt><dd><mark class="ph">github.com/username</mark></dd></div>
+          <div class="item"><dt class="label">LinkedIn</dt><dd><mark class="ph">linkedin.com/in/username</mark></dd></div>
+          <div class="item"><dt class="label">Location</dt><dd>Bukidnon, Philippines</dd></div>
+        </dl>
+      </div>
+    </section>
+  </main>
+
+  <footer>
+    <span>© 2026 Jovanie T. Torregosa</span>
+    <span class="mono">BSIT · Bukidnon State University</span>
+  </footer>
+</div>
+
+<script>
+document.querySelectorAll('.card, .project, .photo').forEach(function (el) {
+  el.addEventListener('pointermove', function (event) {
+    var rect = el.getBoundingClientRect();
+    var x = (event.clientX - rect.left) / rect.width;
+    var y = (event.clientY - rect.top) / rect.height;
+    el.style.setProperty('--pointer-x', (x * 100) + '%');
+    el.style.setProperty('--pointer-y', (y * 100) + '%');
+    var rotateX = ((0.5 - y) * 8).toFixed(2);
+    var rotateY = ((x - 0.5) * 10).toFixed(2);
+    el.style.transform = 'perspective(1000px) rotateX(' + rotateX + 'deg) rotateY(' + rotateY + 'deg) translateY(-3px)';
+  });
+  el.addEventListener('pointerleave', function () {
+    el.style.removeProperty('--pointer-x');
+    el.style.removeProperty('--pointer-y');
+    el.style.transform = '';
+  });
+});
+
+document.querySelectorAll('.copy').forEach(function (btn) {
+  btn.addEventListener('click', function () {
+    var el = document.getElementById(btn.dataset.copy);
+    var text = el ? el.textContent.trim() : '';
+    var done = function () { var old = btn.textContent; btn.textContent = 'Copied'; setTimeout(function () { btn.textContent = old; }, 1500); };
+    try {
+      navigator.clipboard.writeText(text).then(done, function () {
+        var r = document.createRange(); r.selectNodeContents(el);
+        var s = window.getSelection(); s.removeAllRanges(); s.addRange(r);
+      });
+    } catch (e) {
+      var r = document.createRange(); r.selectNodeContents(el);
+      var s = window.getSelection(); s.removeAllRanges(); s.addRange(r);
+    }
+  });
+});
+</script>
+</body>
+</html>
