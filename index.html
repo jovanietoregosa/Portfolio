@@ -36,6 +36,7 @@
 }
 * { box-sizing: border-box; }
 body {
+  overflow-x: clip;
   background: var(--bg); color: var(--ink);
   font-family: var(--font-body); font-size: 16px; line-height: 1.6;
   padding-left: max(16px, env(safe-area-inset-left, 0px));
@@ -51,7 +52,8 @@ p { margin: 0; max-width: 65ch; }
 .label { font-family: var(--font-mono); font-size: 12px; letter-spacing: .12em; text-transform: uppercase; color: var(--muted); }
 .ph { background: var(--ph-bg); color: var(--ph-ink); padding: 0 .3em; border-radius: 3px; }
 
-nav { display: flex; flex-wrap: wrap; gap: 12px 24px; justify-content: space-between; align-items: center; padding-block: 20px; border-bottom: 1px solid var(--line); }
+nav { position: sticky; top: 0; z-index: 100; display: flex; flex-wrap: wrap; gap: 12px 24px; justify-content: space-between; align-items: center; padding-block: 20px; }
+nav::before { content: ""; position: absolute; inset: 0 -100vmax -20px; background: color-mix(in srgb, var(--bg) 45%, transparent); backdrop-filter: blur(12px); mask-image: linear-gradient(to bottom, #000 55%, transparent); -webkit-mask-image: linear-gradient(to bottom, #000 55%, transparent); z-index: -1; }
 nav .brand { position: relative; display: inline-flex; align-items: center; gap: 10px; font-family: var(--font-mono); font-weight: 500; font-size: 14px; letter-spacing: .08em; text-transform: lowercase; }
 nav .brand img { width: 36px; height: 36px; border-radius: 50%; object-fit: cover; border: 2px solid var(--accent); display: block; }
 nav .brand::after { content: ""; position: absolute; left: 0; bottom: -6px; width: 100%; height: 1px; background: linear-gradient(90deg, var(--accent), transparent); transform: scaleX(0); transform-origin: left; transition: transform .25s ease; }
@@ -85,7 +87,7 @@ nav ul a:hover::after, nav ul a:focus-visible::after { transform: scaleX(1); }
 .idcard dd { margin: 2px 0 0; font-weight: 500; }
 .idcard .top { display: flex; justify-content: space-between; gap: 12px; border-bottom: 1px dashed var(--line); padding-bottom: 14px; }
 
-section { padding-block: 56px 0; display: grid; grid-template-columns: minmax(0, 1fr) minmax(0, 3fr); gap: 24px 40px; }
+section { scroll-margin-top: 90px; padding-block: 56px 0; display: grid; grid-template-columns: minmax(0, 1fr) minmax(0, 3fr); gap: 24px 40px; }
 section > header h2 { font-size: 28px; letter-spacing: -0.02em; }
 section > header .label { margin-bottom: 8px; display: block; }
 
