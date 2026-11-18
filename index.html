@@ -3,388 +3,624 @@
 <head>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
-<title>Jovanie Torregosa Portfolio</title>
+<title>Jovanie T. Torregosa | BSIT Student Portfolio</title>
+<meta name="description" content="Portfolio of Jovanie T. Torregosa, 4th year BSIT student at Bukidnon State University, open for IT OJT.">
+<!-- Kung naa kay google-site-verification meta tag gikan sa Search Console, i-paste usab diri -->
 <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600&family=JetBrains+Mono:wght@400;500&family=Space+Grotesk:wght@500;600;700&display=swap">
 <style>
-/* Layout: left-aligned hero with an OJT "ID card" panel beside it, then plain stacked sections on a 12-col-ish grid */
+/* Concept: dark "code editor at night" portfolio. Cyan is the one loud color; coral is a tiny secondary spark.
+   Hero = big name + typing line + floating photo ring. Rest = bento cards. */
 :root {
-  --bg: #f2f5f8;
-  --surface: #ffffff;
-  --ink: #12202c;
-  --muted: #55646f;
-  --line: #d6dee6;
-  --accent: #0b57d0;
-  --accent-ink: #ffffff;
-  --accent-soft: #e3edfd;
-  --ph-bg: #fff4cc;
-  --ph-ink: #6b4e00;
+  --bg: #070b16;
+  --bg2: #0d1428;
+  --card: rgba(255,255,255,.045);
+  --card-solid: #0f172b;
+  --line: rgba(255,255,255,.1);
+  --ink: #eef3ff;
+  --muted: #94a3bd;
+  --accent: #2ee6d6;
+  --accent2: #ff7a59;
+  --accent-ink: #04141a;
+  --glow: rgba(46,230,214,.2);
+  --ph: #f3d57a;
   --font-display: "Space Grotesk", "Segoe UI", system-ui, sans-serif;
   --font-body: "Inter", "Segoe UI", system-ui, sans-serif;
   --font-mono: "JetBrains Mono", ui-monospace, "SFMono-Regular", Menlo, Consolas, monospace;
+  color-scheme: dark;
 }
-@media (prefers-color-scheme: dark) {
-  :root:not([data-theme="light"]) {
-    --bg: #0f171f; --surface: #172330; --ink: #e8eef4; --muted: #9db0bf; --line: #2a3a49;
-    --accent: #7ab0ff; --accent-ink: #0a1a2e; --accent-soft: #1c3150;
-    --ph-bg: #3a2f0d; --ph-ink: #f1d98a; color-scheme: dark;
+@media (prefers-color-scheme: light) {
+  :root:not([data-theme="dark"]) {
+    --bg: #f4f8fc; --bg2: #e6eef8; --card: rgba(255,255,255,.75); --card-solid: #ffffff; --line: rgba(10,25,50,.12);
+    --ink: #0b1730; --muted: #4f607b; --accent: #00756f; --accent2: #d4431f; --accent-ink: #ffffff; --glow: rgba(0,117,111,.16);
+    --ph: #8a6500; color-scheme: light;
   }
 }
-:root[data-theme="dark"] {
-  --bg: #0f171f; --surface: #172330; --ink: #e8eef4; --muted: #9db0bf; --line: #2a3a49;
-  --accent: #7ab0ff; --accent-ink: #0a1a2e; --accent-soft: #1c3150;
-  --ph-bg: #3a2f0d; --ph-ink: #f1d98a; color-scheme: dark;
+:root[data-theme="light"] {
+  --bg: #f4f8fc; --bg2: #e6eef8; --card: rgba(255,255,255,.75); --card-solid: #ffffff; --line: rgba(10,25,50,.12);
+  --ink: #0b1730; --muted: #4f607b; --accent: #00756f; --accent2: #d4431f; --accent-ink: #ffffff; --glow: rgba(0,117,111,.16);
+  --ph: #8a6500; color-scheme: light;
 }
+
 * { box-sizing: border-box; }
-html { overflow-x: clip; }
+html { scroll-behavior: smooth; }
 body {
+  margin: 0; background: var(--bg); color: var(--ink);
+  font-family: var(--font-body); font-size: clamp(16px, .35vw + 14.5px, 19px); line-height: 1.65;
+  padding-left: 20px;
+  padding-right: 20px;
   overflow-x: clip;
-  background: var(--bg); color: var(--ink);
-  font-family: var(--font-body); font-size: clamp(16px, 0.35vw + 14.5px, 19px); line-height: 1.6;
-  padding-left: max(16px, env(safe-area-inset-left, 0px));
-  padding-right: max(16px, env(safe-area-inset-right, 0px));
-  padding-block: 0 48px;
 }
 a { color: var(--accent); }
-a:focus-visible, button:focus-visible { outline: 3px solid var(--accent); outline-offset: 3px; border-radius: 4px; }
-.wrap { max-width: clamp(1040px, 82vw, 1500px); margin: 0 auto; }
-h1, h2, h3 { font-family: var(--font-display); line-height: 1.1; margin: 0; text-wrap: balance; }
-img { max-width: 100%; }
-p { margin: 0; max-width: 65ch; }
-.mono { font-family: var(--font-mono); font-size: 13px; letter-spacing: .04em; }
-.label { font-family: var(--font-mono); font-size: 12px; letter-spacing: .12em; text-transform: uppercase; color: var(--muted); }
-.ph { background: var(--ph-bg); color: var(--ph-ink); padding: 0 .3em; border-radius: 3px; }
+a:focus-visible, button:focus-visible { outline: 3px solid var(--accent); outline-offset: 3px; border-radius: 6px; }
+h1, h2, h3, p { margin: 0; }
+h1, h2, h3 { font-family: var(--font-display); line-height: 1.05; text-wrap: balance; }
+p { max-width: 65ch; }
+.wrap { width: 100%; max-width: none; margin: 0; }
+main.wrap { padding-top: 82px; }
+.mono { font-family: var(--font-mono); font-size: .8em; letter-spacing: .04em; }
+.label { font-family: var(--font-mono); font-size: 12px; letter-spacing: .14em; text-transform: uppercase; color: var(--muted); }
+.ph { color: var(--ph); border-bottom: 1.5px dashed currentColor; }
 
-nav { position: sticky; top: 0; z-index: 100; display: flex; flex-wrap: wrap; gap: 12px 24px; justify-content: space-between; align-items: center; padding-block: 18px; min-width: 0; }
-nav::before { content: ""; position: absolute; inset: 0 -100vmax -20px; background: color-mix(in srgb, var(--bg) 45%, transparent); backdrop-filter: blur(12px); mask-image: linear-gradient(to bottom, #000 55%, transparent); -webkit-mask-image: linear-gradient(to bottom, #000 55%, transparent); z-index: -1; }
-nav .brand { position: relative; display: inline-flex; align-items: center; gap: 10px; font-family: var(--font-mono); font-weight: 500; font-size: 18px; letter-spacing: .08em; text-transform: lowercase; }
-nav .brand img { width: 36px; height: 36px; border-radius: 50%; object-fit: cover; border: 2px solid var(--accent); display: block; }
-nav .brand::after { content: ""; position: absolute; left: 0; bottom: -6px; width: 100%; height: 1px; background: linear-gradient(90deg, var(--accent), transparent); transform: scaleX(0); transform-origin: left; transition: transform .25s ease; }
-nav .brand:hover::after, nav .brand:focus-visible::after { transform: scaleX(1); }
-nav ul { display: flex; flex-wrap: wrap; gap: 8px 28px; list-style: none; margin: 0; padding: 0; font-size: 17px; font-weight: 500; }
-nav ul a { position: relative; color: var(--muted); text-decoration: none; }
-nav ul a::after { content: ""; position: absolute; left: 0; bottom: -5px; width: 100%; height: 1px; background: currentColor; transform: scaleX(0); transform-origin: left; transition: transform .2s ease; }
-nav ul a:hover, nav ul a:focus-visible { color: var(--accent); }
-nav ul a:hover::after, nav ul a:focus-visible::after { transform: scaleX(1); }
+/* ---------- background ---------- */
+.bg { position: fixed; inset: 0; z-index: -2; overflow: hidden; pointer-events: none; background: var(--bg); }
+.bg i { position: absolute; border-radius: 50%; filter: blur(90px); }
+.bg i:nth-child(1) { width: 52vmax; height: 52vmax; left: -18vmax; top: -22vmax; background: var(--glow); }
+.bg i:nth-child(2) { width: 40vmax; height: 40vmax; right: -16vmax; top: 30vh; background: color-mix(in srgb, var(--accent2) 14%, transparent); }
+.bg i:nth-child(3) { width: 38vmax; height: 38vmax; left: 25vw; bottom: -24vmax; background: var(--glow); }
+.bg::after { content: ""; position: absolute; inset: 0;
+  background-image: linear-gradient(var(--line) 1px, transparent 1px), linear-gradient(90deg, var(--line) 1px, transparent 1px);
+  background-size: 64px 64px; opacity: .5;
+  -webkit-mask-image: radial-gradient(ellipse 80% 60% at 50% 0%, #000, transparent 75%); mask-image: radial-gradient(ellipse 80% 60% at 50% 0%, #000, transparent 75%); }
+.spot { position: fixed; inset: 0; z-index: -1; pointer-events: none;
+  background: radial-gradient(520px circle at var(--mx, 70%) var(--my, 20%), color-mix(in srgb, var(--accent) 10%, transparent), transparent 60%); }
 
-.hero { display: grid; grid-template-columns: minmax(0, 1.5fr) minmax(0, 1fr); gap: 40px; padding-block: 64px 56px; align-items: center; min-width: 0; }
-main, .hero > *, section > *, .layers, .projects, .project, .timeline, .offer, .contact, .contact dl, nav ul { min-width: 0; }
-.status { display: inline-flex; align-items: center; gap: 10px; background: linear-gradient(135deg, color-mix(in srgb, var(--accent-soft) 90%, white 10%), var(--surface)); color: var(--accent); padding: 6px 12px; border-radius: 999px; margin-bottom: 24px; border: 1px solid color-mix(in srgb, var(--accent) 25%, var(--line)); box-shadow: 0 8px 18px color-mix(in srgb, var(--accent) 12%, transparent); }
-.status::before { content: ""; width: 8px; height: 8px; border-radius: 50%; background: var(--accent); }
-.hero h1 { font-size: clamp(44px, 6vw + 16px, 92px); font-weight: 700; letter-spacing: -0.035em; text-shadow: 0 8px 28px color-mix(in srgb, var(--accent) 18%, transparent); }
-.hero h1 span { color: var(--accent); background: linear-gradient(135deg, var(--accent), color-mix(in srgb, var(--accent) 55%, #7ed4ff)); -webkit-background-clip: text; background-clip: text; color: transparent; }
-.hero .lede { margin-top: 24px; font-size: 18px; color: var(--muted); }
-.cta { display: flex; flex-wrap: wrap; gap: 12px; margin-top: 32px; }
-.btn { display: inline-block; padding: 12px 20px; border-radius: 8px; font-weight: 600; font-size: 15px; text-decoration: none; border: 1px solid var(--accent); }
-.btn.primary { background: linear-gradient(135deg, var(--accent), color-mix(in srgb, var(--accent) 76%, #7ed4ff)); color: var(--accent-ink); box-shadow: 0 12px 22px color-mix(in srgb, var(--accent) 26%, transparent); }
-.btn.ghost { color: var(--accent); background: color-mix(in srgb, var(--surface) 80%, transparent); }
+/* ---------- nav ---------- */
+.nav { position: fixed; top: 0; left: 0; right: 0; z-index: 50; margin-inline: 0; padding-inline: max(20px, env(safe-area-inset-left, 0px)) max(20px, env(safe-area-inset-right, 0px)); }
+.nav::before { content: ""; position: absolute; inset: 0 0 -16px; z-index: -1; background: color-mix(in srgb, var(--bg) 55%, transparent);
+  -webkit-backdrop-filter: blur(10px); backdrop-filter: blur(10px);
+  -webkit-mask-image: linear-gradient(#000 60%, transparent); mask-image: linear-gradient(#000 60%, transparent); }
+.nav-in { display: flex; flex-wrap: wrap; align-items: center; justify-content: space-between; gap: 6px 28px; padding-block: 16px; }
+.brand { display: inline-flex; align-items: center; gap: 12px; font-family: var(--font-display); font-weight: 600; font-size: 18px; color: var(--ink); text-decoration: none; }
+.avatar { position: relative; width: 38px; height: 38px; border-radius: 50%; overflow: hidden; background: linear-gradient(135deg, var(--accent), var(--accent2)); display: grid; place-items: center; color: var(--accent-ink); font-size: 14px; font-weight: 700; flex: none; }
+.avatar img { position: absolute; inset: 0; width: 100%; height: 100%; object-fit: contain; border-radius: 50%; }
+.nav-in nav { margin-left: auto; max-width: 100%; }
+.links { justify-content: flex-end; display: flex; flex-wrap: wrap; gap: 4px 28px; list-style: none; margin: 0; padding: 0; font-size: 17px; }
+.links a { color: var(--muted); text-decoration: none; font-weight: 500; position: relative; padding-block: 4px; }
+.links a::after { content: ""; position: absolute; left: 0; right: 0; bottom: 0; height: 2px; background: var(--accent); transform: scaleX(0); transform-origin: left; transition: transform .25s; }
+.links a:hover, .links a.on { color: var(--ink); }
+.links a:hover::after, .links a.on::after { transform: scaleX(1); }
+.nav-in nav { margin-left: auto; }
+.links { justify-content: flex-end; }
 
-.card { position: relative; isolation: isolate; background: rgba(255,255,255,0.62); border: 1px solid var(--line); border-radius: 12px; padding: 24px; box-shadow: 0 18px 36px color-mix(in srgb, var(--ink) 8%, transparent); backdrop-filter: blur(10px); -webkit-backdrop-filter: blur(10px); overflow: hidden; }
-.card::before, .project::before { content: ""; position: absolute; inset: -50%; background: radial-gradient(circle at var(--pointer-x, 50%) var(--pointer-y, 50%), color-mix(in srgb, var(--accent) 18%, transparent), transparent 30%); opacity: 0; transition: opacity .25s ease; z-index: 0; }
-.card:hover::before, .project:hover::before { opacity: 1; }
-.card > *, .project > * { position: relative; z-index: 1; }
-@media (prefers-color-scheme: dark) {
-  .card { background: rgba(23, 35, 48, 0.72); }
-}
-.idcard dl { margin: 16px 0 0; display: grid; gap: 14px; }
-.idcard dt { font-family: var(--font-mono); font-size: 11px; letter-spacing: .12em; text-transform: uppercase; color: var(--muted); }
-.idcard dd { margin: 2px 0 0; font-weight: 500; }
-.idcard .top { display: flex; justify-content: space-between; gap: 12px; border-bottom: 1px dashed var(--line); padding-bottom: 14px; }
+/* ---------- hero ---------- */
+.hero { display: grid; grid-template-columns: minmax(0, 1.35fr) minmax(0, 1fr); gap: clamp(32px, 5vw, 72px); align-items: center; padding-block: clamp(40px, 7vw, 96px) 14px; }
+.pill { display: inline-flex; align-items: center; gap: 10px; padding: 7px 16px; border: 1px solid var(--line); background: var(--card); border-radius: 999px; font-family: var(--font-mono); font-size: 13px; }
+.pill::before { content: ""; width: 9px; height: 9px; border-radius: 50%; background: var(--accent); box-shadow: 0 0 0 0 var(--accent); }
+.hero h1 { margin-top: 24px; font-size: clamp(48px, 9.5vw, 124px); font-weight: 700; line-height: .88; letter-spacing: -.05em; }
+.hero h1 .name { display: block; line-height: .88; background: linear-gradient(100deg, var(--accent), var(--ink), var(--accent2), var(--accent)); background-size: 200% auto; -webkit-background-clip: text; background-clip: text; color: transparent; padding-bottom: .06em; }
 
-section { scroll-margin-top: 90px; padding-block: 56px 0; display: grid; grid-template-columns: minmax(0, 1fr) minmax(0, 3fr); gap: 24px 40px; min-width: 0; }
-section > header h2 { font-size: clamp(24px, 2vw + 12px, 32px); letter-spacing: -0.02em; }
-section > header .label { margin-bottom: 8px; display: block; }
+/* scroll progress */
+.progress { position: fixed; top: 0; left: 0; right: 0; height: 3px; z-index: 60; background: linear-gradient(90deg, var(--accent), var(--accent2)); transform: scaleX(0); transform-origin: left; }
 
-.layers { display: grid; gap: 0; border: 1px solid var(--line); border-radius: 12px; background: var(--surface); overflow: hidden; }
-.layer { display: grid; grid-template-columns: minmax(0, 150px) minmax(0, 1fr); gap: 8px 20px; padding: 16px 20px; border-top: 1px solid var(--line); align-items: baseline; min-width: 0; }
-.layer:first-child { border-top: 0; }
-.layer .label { color: var(--ink); }
-.chips { display: flex; flex-wrap: wrap; gap: 8px; }
-.chip { font-family: var(--font-mono); font-size: 13px; padding: 3px 10px; border: 1px solid var(--line); border-radius: 6px; background: linear-gradient(180deg, rgba(255,255,255,0.32), transparent); }
+/* big marquee band */
+.mega { overflow: hidden; margin-top: -10px; margin-inline: calc(50% - 50vw); padding-block: 8px; }
+.mega-track { display: flex; gap: .5em; width: max-content; font-family: var(--font-display); font-weight: 700; font-size: clamp(56px, 11vw, 160px); line-height: 1.05; letter-spacing: -.045em; text-transform: uppercase; }
+.mega-track span { color: transparent; -webkit-text-stroke: 1.5px color-mix(in srgb, var(--ink) 38%, transparent); white-space: nowrap; }
+.mega-track span:nth-child(even) { color: var(--accent); -webkit-text-stroke: 0; }
 
-.projects { display: grid; grid-template-columns: minmax(0, 1fr); gap: 16px; min-width: 0; }
-.project { position: relative; display: grid; gap: 12px; overflow: hidden; }
-.project::before { content: ""; position: absolute; inset: 0 auto 0 0; width: 3px; background: linear-gradient(180deg, transparent, var(--accent), transparent); opacity: 0; transition: opacity .2s ease; }
-.project:hover::before, .project:focus-within::before { opacity: 1; }
-.project h3 { font-size: clamp(18px, 1vw + 14px, 22px); }
-.project .meta { display: flex; flex-wrap: wrap; gap: 8px 16px; color: var(--muted); font-size: 14px; }
-.project p { color: var(--muted); }
-.project-actions { display: flex; flex-wrap: wrap; gap: 8px 16px; }
-.project-actions a { transition: color .15s ease; }
-.project-actions a:hover { color: color-mix(in srgb, var(--accent) 75%, var(--ink)); }
+/* grain */
+.bg::before { content: ""; position: absolute; inset: 0; z-index: 1; opacity: .07; mix-blend-mode: overlay;
+  background-image: url("data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' width='160' height='160'><filter id='n'><feTurbulence type='fractalNoise' baseFrequency='.9' numOctaves='2' stitchTiles='stitch'/></filter><rect width='100%' height='100%' filter='url(%23n)'/></svg>"); }
+.type { margin-top: 22px; font-family: var(--font-mono); font-size: clamp(16px, 1.6vw, 22px); min-height: 1.6em; }
+.type .p { color: var(--accent); }
+.type .cursor { display: inline-block; width: .55em; height: 1.1em; background: var(--accent); vertical-align: -.2em; margin-left: 3px; }
+.lede { margin-top: 18px; color: var(--muted); font-size: 1.08em; }
+.cta { display: flex; flex-wrap: wrap; gap: 14px; margin-top: 34px; }
+.btn { display: inline-flex; align-items: center; gap: 8px; padding: 14px 26px; border-radius: 12px; font-weight: 600; text-decoration: none; border: 1.5px solid var(--accent); font-size: 16px; }
+.btn.primary { background: var(--accent); color: var(--accent-ink); box-shadow: 0 10px 30px -8px var(--accent); }
+.btn.ghost { color: var(--accent); background: transparent; }
 
-.timeline { display: grid; gap: 16px; }
-.row { display: grid; grid-template-columns: minmax(0, 150px) minmax(0, 1fr); gap: 8px 20px; padding-bottom: 16px; border-bottom: 1px solid var(--line); min-width: 0; }
-.row:last-child { border-bottom: 0; }
-.row h3 { font-size: clamp(17px, .7vw + 15px, 19px); font-family: var(--font-body); font-weight: 600; letter-spacing: 0; }
-.row p { color: var(--muted); font-size: 15px; }
+.portrait { position: relative; width: min(100%, 400px); justify-self: center; aspect-ratio: 1; perspective: 900px; }
+.tilt { position: absolute; inset: 0; transition: transform .2s ease-out; will-change: transform; }
+.ring { position: absolute; inset: 0; border-radius: 50%; padding: 5px; background: conic-gradient(from var(--spin, 0deg), var(--accent), transparent 25%, var(--accent2) 50%, transparent 75%, var(--accent)); }
+.pic { position: relative; width: 100%; height: 100%; border-radius: 50%; overflow: visible; background: var(--card-solid); display: grid; place-items: center; }
+.cut { position: absolute; z-index: 1; top: -36%; left: 0; width: 100%; height: 136%; background: url("photo-cutout.png") calc(50% - 5px) bottom / 101% auto no-repeat; clip-path: inset(0 0 0 0 round 50%); }
+.chip-f { position: absolute; padding: 8px 14px; border-radius: 12px; background: var(--card-solid); border: 1px solid var(--line); font-family: var(--font-mono); font-size: 13px; box-shadow: 0 12px 30px -12px rgba(0,0,0,.5); display: flex; gap: 8px; align-items: center; }
+.chip-f::before { content: ""; width: 8px; height: 8px; border-radius: 50%; background: var(--accent); }
+.chip-f.b::before { background: var(--accent2); }
+.f1 { top: 6%; left: -6%; } .f2 { top: 44%; right: -8%; } .f3 { bottom: 4%; left: 4%; }
 
-.offer { display: grid; grid-template-columns: repeat(auto-fit, minmax(220px, 1fr)); gap: 16px; }
-.offer .card h3 { font-size: clamp(17px, .8vw + 15px, 20px); margin-bottom: 8px; }
-.offer .card p { color: var(--muted); font-size: 15px; }
+/* ---------- sections ---------- */
+section { padding-block: clamp(56px, 8vw, 104px) 0; scroll-margin-top: 80px; }
+.sec-head { display: flex; flex-wrap: wrap; align-items: baseline; gap: 8px 20px; margin-bottom: 32px; }
+.sec-head h2 { font-size: clamp(32px, 4.5vw, 54px); letter-spacing: -.035em; }
+.sec-head .label { color: var(--accent); }
+.card { background: var(--card); border: 1px solid var(--line); border-radius: 20px; padding: clamp(20px, 2.4vw, 32px); -webkit-backdrop-filter: blur(8px); backdrop-filter: blur(8px); min-width: 0; }
+.bento { display: grid; grid-template-columns: repeat(6, minmax(0, 1fr)); gap: 16px; }
+.bento, .service-grid, .skills, .project, .timeline, .contact-card { width: min(100%, 1100px); margin-inline: auto; }
+.b-wide { grid-column: span 6; } .b-sm { grid-column: span 2; } .b-third { grid-column: span 2; }
+.service-grid { display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 16px; margin: 16px auto 0; }
+.service-card { min-height: 250px; display: flex; flex-direction: column; }
+.service-card .service-top { display: flex; align-items: center; justify-content: space-between; gap: 16px; margin-bottom: 18px; }
+.service-icon { width: 38px; height: 38px; display: grid; place-items: center; border: 1px solid var(--line); border-radius: 10px; background: color-mix(in srgb, var(--card-solid) 80%, transparent); font-size: 18px; }
+.service-index { color: var(--muted); font-family: var(--font-mono); font-size: 12px; letter-spacing: .08em; }
+.service-card h3 { margin-bottom: 8px; }
+.service-card p { font-size: .92em; }
+.service-card ul { display: grid; gap: 5px; margin: 14px 0 18px; padding-left: 18px; color: var(--muted); font-size: .84em; }
+.service-tools { display: flex; flex-wrap: wrap; gap: 8px; margin-top: auto; padding-top: 14px; border-top: 1px solid var(--line); }
+.service-tools .chip { display: inline-flex; align-items: center; gap: 6px; font-size: 12px; }
+.service-tools .chip::before { content: attr(data-logo); display: grid; place-items: center; min-width: 18px; height: 18px; padding-inline: 2px; border-radius: 4px; background: color-mix(in srgb, var(--accent) 18%, transparent); color: var(--accent); font-family: var(--font-mono); font-size: 9px; font-weight: 700; }
+.card h3 { font-size: 1.3em; margin-bottom: 10px; }
+.card p { color: var(--muted); }
+.card .big { font-family: var(--font-display); font-size: clamp(30px, 3.4vw, 44px); font-weight: 700; letter-spacing: -.03em; margin-block: 6px 4px; color: var(--ink); }
 
-.contact dl { display: grid; gap: 14px; margin: 0; }
-.contact .item { display: flex; flex-wrap: wrap; gap: 4px 16px; align-items: baseline; }
-.contact dt { min-width: 90px; }
-.contact dd { margin: 0; overflow-wrap: anywhere; }
-.copy { font: inherit; font-size: 12px; background: none; border: 1px solid var(--line); color: var(--muted); border-radius: 6px; padding: 2px 8px; cursor: pointer; }
+.ticker { overflow: hidden; border-block: 1px solid var(--line); padding-block: 16px; -webkit-mask-image: linear-gradient(90deg, transparent, #000 10%, #000 90%, transparent); mask-image: linear-gradient(90deg, transparent, #000 10%, #000 90%, transparent); margin-bottom: 20px; }
+.track { display: flex; gap: 14px; width: max-content; }
+.tick { font-family: var(--font-mono); font-size: 15px; padding: 8px 18px; border: 1px solid var(--line); border-radius: 999px; background: var(--card); white-space: nowrap; }
+.skills { display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 16px; }
+.skill-card { min-height: 190px; }
+.skill-card h3 { display: flex; align-items: center; gap: 10px; }
+.skill-icon { width: 30px; height: 30px; display: grid; place-items: center; border: 1px solid var(--line); border-radius: 8px; background: color-mix(in srgb, var(--card-solid) 80%, transparent); font-size: 15px; }
+.skills .chips { margin-top: 18px; }
+.skills .chip { display: inline-flex; align-items: center; gap: 6px; }
+.skills .chip::before { content: attr(data-logo); display: grid; place-items: center; min-width: 18px; height: 18px; padding-inline: 2px; border-radius: 4px; background: color-mix(in srgb, var(--accent) 18%, transparent); color: var(--accent); font-family: var(--font-mono); font-size: 9px; font-weight: 700; }
+.chips { display: flex; flex-wrap: wrap; gap: 8px; margin-top: 14px; }
+.chip { font-family: var(--font-mono); font-size: 13px; padding: 5px 12px; border: 1px solid var(--line); border-radius: 8px; background: color-mix(in srgb, var(--bg) 40%, transparent); }
+
+.project { display: grid; grid-template-columns: minmax(0, 1.1fr) minmax(0, 1fr); gap: clamp(20px, 3vw, 40px); padding: 0; overflow: hidden; }
+.project .info { padding: clamp(24px, 3vw, 40px); display: grid; gap: 16px; align-content: start; }
+.project-logo { width: 92px; height: 92px; object-fit: contain; border-radius: 18px; border: 1px solid var(--line); background: #000; box-shadow: 0 12px 28px -16px var(--accent); }
+.console-logo { width: 120px; height: 120px; object-fit: contain; justify-self: center; margin: 18px auto 0; border-radius: 14px; border: 1px solid var(--line); background: #000; box-shadow: 0 10px 24px -16px var(--accent); }
+.project h3 { font-size: clamp(28px, 3.2vw, 40px); margin: 0; letter-spacing: -.03em; }
+.meta { display: flex; flex-wrap: wrap; gap: 8px 18px; color: var(--muted); }
+.meta b { color: var(--ink); font-weight: 500; }
+.console { background: var(--card-solid); border-left: 1px solid var(--line); display: grid; align-content: center; min-width: 0; }
+.console .bar { display: flex; align-items: center; gap: 8px; padding: 14px 18px; border-bottom: 1px solid var(--line); }
+.console .bar i { width: 11px; height: 11px; border-radius: 50%; background: var(--line); }
+.console .bar i:nth-child(1) { background: #ff5f57; } .console .bar i:nth-child(2) { background: #febc2e; } .console .bar i:nth-child(3) { background: #28c840; }
+.console .bar span { margin-left: 10px; font-family: var(--font-mono); font-size: 12px; color: var(--muted); }
+.queue { display: grid; gap: 10px; padding: 22px 18px; }
+.q { display: flex; align-items: center; gap: 14px; padding: 12px 14px; border: 1px solid var(--line); border-radius: 12px; font-family: var(--font-mono); font-size: 13px; }
+.q em { font-style: normal; margin-left: auto; color: var(--muted); }
+.q .n { width: 26px; height: 26px; border-radius: 8px; display: grid; place-items: center; background: var(--line); font-weight: 500; }
+.q.now { border-color: var(--accent); }
+.q.now .n { background: var(--accent); color: var(--accent-ink); }
+.q.now em { color: var(--accent); }
+.console .note { padding: 0 18px 20px; color: var(--muted); font-size: 13px; font-family: var(--font-mono); }
+.roles { display: flex; flex-wrap: wrap; gap: 8px; }
+.project.next { grid-template-columns: minmax(0, 1.1fr) minmax(0, 1fr); border-style: dashed; margin-top: 16px; }
+.capstone-flow { display: grid; gap: 12px; padding: clamp(24px, 3vw, 40px); border-left: 1px solid var(--line); background: color-mix(in srgb, var(--card-solid) 65%, transparent); }
+.capstone-flow h4 { margin: 0 0 4px; font-family: var(--font-display); font-size: 1.05em; }
+.capstone-step { padding: 12px 14px; border: 1px solid var(--line); border-radius: 12px; background: color-mix(in srgb, var(--bg) 35%, transparent); }
+.capstone-step p { color: var(--muted); font-size: .86em; }
+
+.timeline { display: grid; gap: 0; }
+.row { display: grid; grid-template-columns: minmax(0, 170px) minmax(0, 1fr); gap: 8px 24px; padding-block: 22px; border-top: 1px solid var(--line); }
+.row:first-child { border-top: 0; padding-top: 0; } .row:last-child { padding-bottom: 0; }
+.row h3 { font-size: 1.3em; margin: 0 0 4px; font-family: var(--font-body); font-weight: 600; letter-spacing: 0; }
+.certificate-image { display: block; width: min(100%, 560px); height: auto; margin-top: 16px; border: 1px solid var(--line); border-radius: 14px; box-shadow: 0 16px 34px -20px rgba(0,0,0,.7); }
+
+.contact-card { display: grid; grid-template-columns: minmax(0, 1fr) minmax(0, 1fr); gap: clamp(24px, 4vw, 56px); align-items: center; }
+.contact-card h2 { font-size: clamp(34px, 5vw, 60px); letter-spacing: -.04em; }
+.contact-card h2 span { color: var(--accent); }
+.list { display: grid; gap: 14px; margin: 0; }
+.item { display: grid; grid-template-columns: 90px minmax(0, 1fr) auto; gap: 8px 14px; align-items: baseline; padding-bottom: 14px; border-bottom: 1px solid var(--line); }
+.item:last-child { border-bottom: 0; padding-bottom: 0; }
+.item dd { margin: 0; overflow-wrap: anywhere; }
+.copy { font: inherit; font-size: 12px; background: none; border: 1px solid var(--line); color: var(--muted); border-radius: 8px; padding: 3px 12px; cursor: pointer; }
 .copy:hover { color: var(--accent); border-color: var(--accent); }
+.message-card { width: min(100%, 560px); margin: 16px auto 0; }
+.message-card h3 { margin-bottom: 8px; }
+.message-card > p { color: var(--muted); font-size: .92em; }
+.message-form { display: grid; gap: 14px; margin-top: 18px; }
+.message-fields { display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 14px; }
+.message-form label { display: grid; gap: 6px; color: var(--ink); font-size: 13px; font-weight: 600; }
+.message-form label.full { grid-column: 1 / -1; }
+.message-form input, .message-form textarea { width: 100%; border: 1px solid var(--line); border-radius: 8px; padding: 10px 12px; background: color-mix(in srgb, var(--bg) 55%, transparent); color: var(--ink); font: inherit; font-size: 14px; }
+.message-form textarea { min-height: 110px; resize: vertical; }
+.message-form input:focus, .message-form textarea:focus { outline: 2px solid var(--accent); outline-offset: 1px; border-color: var(--accent); }
+.message-form .btn { justify-self: start; cursor: pointer; }
 
-footer { margin-top: 64px; padding-top: 20px; border-top: 1px solid var(--line); color: var(--muted); font-size: 13px; display: flex; flex-wrap: wrap; justify-content: space-between; gap: 8px; }
+/* ---------- section navigation ---------- */
+body.section-focus .hero, body.section-focus .mega { display: none; }
+body.section-focus main.wrap { padding-top: 82px; }
+body.section-focus main.wrap > section { display: none; }
+body.section-focus main.wrap > section.active-section { display: block; min-height: calc(100vh - 82px); }
+body.home-focus main.wrap > section { display: none; }
+body.home-focus footer, body.section-focus footer { display: flex; }
 
-@media (max-width: 760px) {
-  .hero { grid-template-columns: minmax(0, 1fr); padding-block: 40px; }
-  section { grid-template-columns: minmax(0, 1fr); padding-block-start: 44px; }
-  .layer, .row { grid-template-columns: minmax(0, 1fr); }
-}
-@media (max-width: 900px) {
-  .hero { grid-template-columns: minmax(0, 1fr); }
-  section { grid-template-columns: minmax(0, 1fr); }
-  .projects { grid-template-columns: minmax(0, 1fr); }
-}
-@media (max-width: 480px) {
-  body { padding-left: max(12px, env(safe-area-inset-left, 0px)); padding-right: max(12px, env(safe-area-inset-right, 0px)); }
-  nav { gap: 10px 12px; }
-  nav ul { flex-basis: 100%; gap: 8px 16px; font-size: 15px; }
-  .cta { align-items: stretch; }
-  .cta .btn { width: 100%; text-align: center; }
-  .chips { min-width: 0; }
-  .card { padding: 18px; }
-}
-@media (prefers-reduced-motion: no-preference) {
-  nav .brand img { transition: transform .2s ease; }
-  nav .brand:hover img, nav .brand:focus-visible img { transform: scale(1.1); }
-  .btn, .copy, nav ul a { transition: background-color .15s, color .15s, border-color .15s; }
-  .btn.primary:hover { filter: brightness(1.08); }
-}
+footer { margin-top: clamp(56px, 8vw, 96px); padding-block: 24px 40px; border-top: 1px solid var(--line); color: var(--muted); font-size: 14px; display: flex; flex-wrap: wrap; justify-content: space-between; gap: 8px; }
 
-/* ---------- animated background ---------- */
-.bg { position: fixed; inset: 0; z-index: -1; overflow: hidden; pointer-events: none; }
-.bg i { position: absolute; border-radius: 50%; filter: blur(70px); opacity: .6; }
-.bg i:nth-child(1) { width: 46vmax; height: 46vmax; left: -14vmax; top: -16vmax; background: var(--accent-soft); }
-.bg i:nth-child(2) { width: 36vmax; height: 36vmax; right: -12vmax; top: 24vh; background: color-mix(in srgb, var(--accent) 24%, transparent); }
-.bg i:nth-child(3) { width: 34vmax; height: 34vmax; left: 28vw; bottom: -20vmax; background: var(--accent-soft); }
-.bg::after { content: ""; position: absolute; inset: 0; background-image: linear-gradient(var(--line) 1px, transparent 1px), linear-gradient(90deg, var(--line) 1px, transparent 1px); background-size: 56px 56px; opacity: .45; -webkit-mask-image: radial-gradient(ellipse at 50% 0%, #000 0%, transparent 72%); mask-image: radial-gradient(ellipse at 50% 0%, #000 0%, transparent 72%); }
-
-/* ---------- profile photo ---------- */
+/* ---------- motion ---------- */
 @property --spin { syntax: "<angle>"; inherits: false; initial-value: 0deg; }
-.photo { position: relative; width: 100%; aspect-ratio: 5 / 4; padding: 4px; margin-top: 16px; border-radius: 20px; background: conic-gradient(from var(--spin), var(--accent), var(--accent-soft), var(--accent), var(--accent-soft), var(--accent)); }
-.photo-in { position: relative; width: 100%; height: 100%; border-radius: 16px; overflow: hidden; background: var(--surface); }
-.photo-in img { width: 100%; height: 100%; object-fit: cover; display: block; }
-.photo-in::after { content: ""; position: absolute; inset: 0; pointer-events: none; background: linear-gradient(105deg, transparent 38%, color-mix(in srgb, #fff 38%, transparent) 50%, transparent 62%); transform: translateX(-120%); }
-.photo-empty { height: 100%; display: grid; place-content: center; justify-items: center; gap: 6px; text-align: center; background: var(--accent-soft); }
-.photo-empty b { font-family: var(--font-display); font-size: 64px; line-height: 1; letter-spacing: -0.04em; color: var(--accent); }
-
 @media (prefers-reduced-motion: no-preference) {
   @keyframes drift1 { to { transform: translate(8vmax, 6vmax) scale(1.12); } }
   @keyframes drift2 { to { transform: translate(-9vmax, -5vmax) scale(.92); } }
   @keyframes drift3 { to { transform: translate(6vmax, -8vmax) scale(1.1); } }
-  .bg i:nth-child(1) { animation: drift1 16s ease-in-out infinite alternate; }
-  .bg i:nth-child(2) { animation: drift2 20s ease-in-out infinite alternate; }
-  .bg i:nth-child(3) { animation: drift3 18s ease-in-out infinite alternate; }
-  @keyframes gridpan { to { background-position: 56px 56px; } }
-  .bg::after { animation: gridpan 5s linear infinite; }
-
-  @keyframes rise { from { opacity: 0; transform: translateY(18px); } to { opacity: 1; transform: none; } }
-  .hero > div > * { animation: rise .7s cubic-bezier(.2, .7, .2, 1) both; }
-  .hero > div > *:nth-child(2) { animation-delay: .08s; }
-  .hero > div > *:nth-child(3) { animation-delay: .16s; }
-  .hero > div > *:nth-child(4) { animation-delay: .24s; }
-  .idcard { animation: rise .8s cubic-bezier(.2, .7, .2, 1) .15s both; }
-
+  .bg i:nth-child(1) { animation: drift1 18s ease-in-out infinite alternate; }
+  .bg i:nth-child(2) { animation: drift2 22s ease-in-out infinite alternate; }
+  .bg i:nth-child(3) { animation: drift3 20s ease-in-out infinite alternate; }
+  @keyframes rise { from { opacity: 0; transform: translateY(22px); } to { opacity: 1; transform: none; } }
+  .hero > div:first-child > * { animation: rise .8s cubic-bezier(.2,.7,.2,1) both; }
+  .hero > div:first-child > :nth-child(2) { animation-delay: .08s; } .hero > div:first-child > :nth-child(3) { animation-delay: .16s; }
+  .hero > div:first-child > :nth-child(4) { animation-delay: .24s; } .hero > div:first-child > :nth-child(5) { animation-delay: .32s; }
+  .portrait { animation: rise 1s cubic-bezier(.2,.7,.2,1) .2s both; }
   @keyframes spin { to { --spin: 360deg; } }
-  @keyframes float { 50% { transform: translateY(-8px); } }
-  @keyframes shine { 0%, 55% { transform: translateX(-120%); } 100% { transform: translateX(120%); } }
-  @keyframes kenburns { to { transform: scale(1.1); } }
-  @keyframes pulse { 0% { box-shadow: 0 0 0 0 color-mix(in srgb, var(--accent) 55%, transparent); } 100% { box-shadow: 0 0 0 10px transparent; } }
-  .photo { animation: spin 6s linear infinite, float 5s ease-in-out infinite; }
-  .photo-in::after { animation: shine 4.5s ease-in-out infinite; }
-  .photo-in img { animation: kenburns 12s ease-in-out infinite alternate; }
-  .status::before { animation: pulse 1.8s ease-out infinite; }
-
-  .card, .layer, .chip, .project, .btn { transition: transform .2s, border-color .2s, box-shadow .2s, color .2s; }
-  .card:hover { transform: translateY(-4px); box-shadow: 0 18px 36px color-mix(in srgb, var(--accent) 12%, transparent); }
-  .layer:hover { transform: translateX(4px); border-color: color-mix(in srgb, var(--accent) 55%, var(--line)); }
-  .chip:hover { transform: translateY(-2px); border-color: var(--accent); color: var(--accent); }
-  .project:hover { transform: translateY(-3px); border-color: var(--accent); box-shadow: 0 10px 24px color-mix(in srgb, var(--accent) 14%, transparent); }
+  @keyframes float { 50% { transform: translateY(-10px); } }
+  @keyframes orbit { from { transform: translate(-50%, -50%) rotate(0deg) translateX(var(--orbit-radius)) rotate(0deg); } to { transform: translate(-50%, -50%) rotate(360deg) translateX(var(--orbit-radius)) rotate(-360deg); } }
+  @keyframes blink { 50% { opacity: 0; } }
+  @keyframes ping { 0% { box-shadow: 0 0 0 0 color-mix(in srgb, var(--accent) 60%, transparent); } 100% { box-shadow: 0 0 0 12px transparent; } }
+  @keyframes scroll { to { transform: translateX(-50%); } }
+  @keyframes shimmer { to { background-position: 200% center; } }
+  @keyframes marquee { to { transform: translateX(-50%); } }
+  .hero h1 .name { animation: shimmer 6s linear infinite; }
+  .mega-track { animation: marquee 40s linear infinite; }
+  .ring { animation: spin 7s linear infinite; }
+  .chip-f { --orbit-radius: clamp(150px, 28vw, 225px); top: 50%; right: auto; bottom: auto; left: 50%; width: max-content; white-space: nowrap; animation: orbit 14s linear infinite; }
+  .f2 { animation-delay: -3.5s; } .f3 { animation-delay: -7s; } .f4 { animation-delay: -10.5s; }
+  .cursor { animation: blink 1s steps(2) infinite; }
+  .pill::before { animation: ping 1.8s ease-out infinite; }
+  .track { animation: scroll 32s linear infinite; }
+  .ticker:hover .track { animation-play-state: paused; }
+  .js .rv { opacity: 0; transform: translateY(24px); transition: opacity .7s, transform .7s cubic-bezier(.2,.7,.2,1); }
+  .js .rv.in { opacity: 1; transform: none; }
+  .card, .btn, .tick, .chip { transition: transform .25s, border-color .25s, box-shadow .25s; }
+  .card:hover { transform: translateY(-4px); border-color: color-mix(in srgb, var(--accent) 55%, var(--line)); box-shadow: 0 20px 40px -20px var(--accent); }
   .btn:hover { transform: translateY(-2px); }
+  .tick:hover, .chip:hover { border-color: var(--accent); color: var(--accent); }
+}
+@media (prefers-reduced-motion: reduce) { html { scroll-behavior: auto; } .track, .mega-track { flex-wrap: wrap; width: auto; } .progress { display: none; } }
 
-  @supports (animation-timeline: view()) {
-    section > * { animation: rise linear both; animation-timeline: view(); animation-range: entry 0% entry 45%; }
-  }
+/* ---------- side menu on the right (large screens) ---------- */
+@media (min-width: 1100px) {
+  main.wrap { padding-left: 0; padding-right: 0; }
+  .nav-in nav { position: static; transform: none; z-index: auto; margin-left: auto; }
+  .links { flex-direction: row; align-items: center; flex-wrap: wrap; gap: 4px 28px; font-size: 17px; padding: 0; }
+  .links a { display: inline; min-width: 0; padding-block: 6px; border-radius: 0; }
+}
+
+/* ---------- responsive ---------- */
+@media (max-width: 900px) {
+  .nav-in nav { width: 100%; }
+  .links { justify-content: flex-start; gap: 4px clamp(10px, 3vw, 28px); font-size: clamp(14px, 2.2vw, 17px); }
+  .hero { grid-template-columns: minmax(0, 1fr); }
+  .portrait { order: -1; width: min(78%, 320px); justify-self: center; }
+  .bento { grid-template-columns: minmax(0, 1fr); }
+  .skills { grid-template-columns: minmax(0, 1fr); }
+  .service-grid { grid-template-columns: minmax(0, 1fr); }
+  .b-wide, .b-sm, .b-third { grid-column: auto; }
+  .project, .contact-card { grid-template-columns: minmax(0, 1fr); }
+  .message-fields { grid-template-columns: minmax(0, 1fr); }
+  .message-form label.full { grid-column: auto; }
+  .console { border-left: 0; border-top: 1px solid var(--line); }
+  .capstone-flow { border-left: 0; border-top: 1px solid var(--line); }
+  .row { grid-template-columns: minmax(0, 1fr); }
+}
+@media (max-width: 480px) {
+  main.wrap { padding-top: 128px; }
+  .portrait { width: min(100%, 260px); }
+  .chip-f { --orbit-radius: clamp(96px, 30vw, 130px); padding: 7px 10px; font-size: 11px; }
+  .btn { width: 100%; justify-content: center; }
+  .nav-in { justify-content: flex-end; }
+  .brand { font-size: 16px; margin-right: auto; }
+  .links { width: 100%; font-size: clamp(13px, 3.5vw, 15px); gap: 2px clamp(8px, 4vw, 18px); justify-content: flex-start; text-align: left; }
+  .item { grid-template-columns: minmax(0, 1fr) auto; } .item dt { grid-column: 1 / -1; }
+  .f1 { left: 0; } .f2 { right: 0; }
 }
 </style>
 </head>
 <body>
-
 <div class="bg" aria-hidden="true"><i></i><i></i><i></i></div>
+<div class="spot" aria-hidden="true"></div>
+<div class="progress" id="progress" aria-hidden="true"></div>
 
-<div class="wrap">
-  <nav>
-    <span class="brand"><img src="photo.jpg" alt="Jovanie T. Torregosa">jovanie.torregosa</span>
-    <ul>
-      <li><a href="#about">About</a></li>
-      <li><a href="#skills">Skills</a></li>
-      <li><a href="#projects">Projects</a></li>
-      <li><a href="#education">Education</a></li>
-      <li><a href="#contact">Contact</a></li>
-    </ul>
-  </nav>
+<header class="nav">
+  <div class="wrap nav-in">
+    <a class="brand" href="#top" aria-label="Jovanie Torregosa, back to top">
+      <span class="avatar"><img src="photo-cutout.png" alt="Jovanie T. Torregosa"></span>
+      jovanie.torregosa
+    </a>
+    <nav aria-label="Sections">
+      <ul class="links">
+        <li><a href="#top">Home</a></li>
+        <li><a href="#about">About</a></li>
+        <li><a href="#skills">Skills</a></li>
+        <li><a href="#projects">Projects</a></li>
+        <li><a href="#education">Education</a></li>
+        <li><a href="#contact">Contact</a></li>
+      </ul>
+    </nav>
+  </div>
+</header>
 
-  <main>
-    <div class="hero">
-      <div>
-        <div class="status mono">Open for IT OJT</div>
-        <h1>Jovanie T. <span>Torregosa</span></h1>
-        <p class="lede">Fourth-year BSIT student at Bukidnon State University, looking for an on-the-job training placement where I can apply what I have learned in class to real systems and real users.</p>
-        <div class="cta">
-          <a class="btn primary" href="#projects">See my projects</a>
-          <a class="btn ghost" href="#contact">Contact me</a>
-        </div>
+<main class="wrap" id="top">
+  <div class="hero">
+    <div>
+      <h1>Hi, I'm <span class="name">Jovanie T. Torregosa</span></h1>
+      <div class="type" aria-live="off"><span class="p">&gt;</span> <span id="typed">Web Developer</span><span class="cursor"></span></div>
+      <div class="cta">
+        <a class="btn primary" href="#projects">View my work</a>
+        <a class="btn ghost" href="#contact">Contact me</a>
       </div>
-      <aside class="card idcard" aria-label="OJT summary">
-        <div class="top">
-          <span class="label">OJT applicant</span>
-          <span class="mono">BSIT · 4th yr</span>
-        </div>
-        <div class="photo">
-          <!-- PHOTO: replace the .photo-empty div with <img src="..." alt="Jovanie T. Torregosa"> -->
-          <div class="photo-in" id="profile-photo">
-            <div class="photo-empty"><b>JT</b><span class="label">Your photo here</span></div>
-          </div>
-        </div>
-        <dl>
-          <div><dt>School</dt><dd>Bukidnon State University</dd></div>
-          <div><dt>Program</dt><dd>BS Information Technology</dd></div>
-          <div><dt>Preferred area</dt><dd><mark class="ph">Web dev / IT support / QA</mark></dd></div>
-          <div><dt>Required hours</dt><dd><mark class="ph">___ hours</mark></dd></div>
-          <div><dt>Available from</dt><dd><mark class="ph">Month, Year</mark></dd></div>
-        </dl>
-      </aside>
     </div>
 
-    <section id="about">
-      <header><span class="label">About</span><h2>Who I am</h2></header>
-      <div style="display:grid;gap:16px">
-        <p>I am a BSIT student who enjoys building things that work and fixing things that do not. My coursework covers programming, databases, networking and systems analysis, and I am now ready to work with a team in a professional setting.</p>
-        <p><mark class="ph">Add 1–2 sentences about what you enjoy most in IT and what you want to learn during OJT.</mark></p>
+    <div class="portrait">
+      <div class="tilt" id="tilt">
+        <div class="ring"><div class="pic">
+          <div class="cut" role="img" aria-label="Jovanie T. Torregosa"></div>
+        </div></div>
+        <span class="chip-f f1">AppDev</span>
+        <span class="chip-f f2 b">WebDev</span>
+        <span class="chip-f f3">Networking</span>
+        <span class="chip-f f4">Graphic Designer</span>
       </div>
-    </section>
+    </div>
+  </div>
 
-    <section id="skills">
-      <header><span class="label">Skills</span><h2>Tools I work with</h2></header>
-      <div class="layers">
-        <div class="layer"><span class="label">Front end</span><div class="chips"><span class="chip">HTML</span><span class="chip">CSS</span><span class="chip">JavaScript</span></div></div>
-        <div class="layer"><span class="label">Back end</span><div class="chips"><span class="chip">PHP</span><span class="chip">Python</span><span class="chip">Java</span></div></div>
-        <div class="layer"><span class="label">Database</span><div class="chips"><span class="chip">MySQL</span><span class="chip">ER design</span></div></div>
-        <div class="layer"><span class="label">Tools</span><div class="chips"><span class="chip">Git &amp; GitHub</span><span class="chip">VS Code</span><span class="chip">Figma</span></div></div>
-        <div class="layer"><span class="label">IT support</span><div class="chips"><span class="chip">Troubleshooting</span><span class="chip">Networking basics</span><span class="chip">Documentation</span></div></div>
+  <div class="mega" aria-hidden="true"><div class="mega-track" id="mega"></div></div>
+
+  <section id="about">
+    <div class="sec-head rv"><span class="label">About</span><h2>Who I am</h2></div>
+    <div class="bento">
+      <div class="card b-wide rv">
+        <h3>Building things that work</h3>
+        <p>I am a BSIT student who enjoys building things that work and fixing things that do not. My coursework covers programming, databases, networking and systems analysis, and I am ready to join a team in a professional setting.</p>
       </div>
-    </section>
+    </div>
+    <div class="service-grid">
+      <article class="card service-card rv"><div class="service-top"><span class="service-icon">▣</span><span class="service-index">01 / 08</span></div><h3>Web Applications</h3><p>Custom web platforms that turn everyday workflows into useful digital tools.</p><ul><li>Business dashboards &amp; admin portals</li><li>Booking, inventory &amp; management systems</li><li>REST APIs &amp; third-party integrations</li></ul><div class="service-tools"><span class="chip" data-logo="JS">JavaScript</span><span class="chip" data-logo="HTML">HTML</span><span class="chip" data-logo="CSS">CSS</span></div></article>
+      <article class="card service-card rv"><div class="service-top"><span class="service-icon">▯</span><span class="service-index">02 / 08</span></div><h3>App Development</h3><p>Practical mobile experiences designed around how people work on the go.</p><ul><li>Android applications</li><li>User accounts, notifications &amp; profiles</li><li>Offline storage &amp; synchronization</li></ul><div class="service-tools"><span class="chip" data-logo="J">Java</span><span class="chip" data-logo="A">Android Studio</span><span class="chip" data-logo="XML">XML</span></div></article>
+      <article class="card service-card rv"><div class="service-top"><span class="service-icon">⌘</span><span class="service-index">03 / 08</span></div><h3>Networking</h3><p>Network planning, configuration, and troubleshooting for connected workplaces.</p><ul><li>LAN / WAN topology &amp; network setup</li><li>Routing, switching &amp; VLAN configuration</li><li>Connectivity diagnostics &amp; traffic analysis</li></ul><div class="service-tools"><span class="chip" data-logo="C">Cisco</span><span class="chip" data-logo="L">Linux</span><span class="chip" data-logo="W">Wireshark</span></div></article>
+      <article class="card service-card rv"><div class="service-top"><span class="service-icon">🛒</span><span class="service-index">04 / 08</span></div><h3>E-commerce Websites</h3><p>Online stores that make products easy to discover, purchase, and manage.</p><ul><li>Product catalogs, search &amp; shopping carts</li><li>Checkout integration &amp; order tracking</li><li>Inventory &amp; store administration</li></ul><div class="service-tools"><span class="chip" data-logo="W">WordPress</span><span class="chip" data-logo="PHP">PHP</span><span class="chip" data-logo="JS">JavaScript</span></div></article>
+      <article class="card service-card rv"><div class="service-top"><span class="service-icon">☁</span><span class="service-index">05 / 08</span></div><h3>SaaS Development</h3><p>Cloud-based software built around a focused product idea and its users.</p><ul><li>MVPs &amp; customer dashboards</li><li>User roles &amp; multi-tenant architecture</li><li>Subscriptions &amp; API integrations</li></ul><div class="service-tools"><span class="chip" data-logo="R">React</span><span class="chip" data-logo="L">Laravel</span><span class="chip" data-logo="SQL">MySQL</span></div></article>
+      <article class="card service-card rv"><div class="service-top"><span class="service-icon">◆</span><span class="service-index">06 / 08</span></div><h3>Capstone Project Systems</h3><p>Development support that connects a research problem to a working prototype.</p><ul><li>Research-based web &amp; mobile systems</li><li>Database design &amp; system documentation</li><li>Testing, refinement &amp; demo preparation</li></ul><div class="service-tools"><span class="chip" data-logo="Py">Python</span><span class="chip" data-logo="SQL">MySQL</span><span class="chip" data-logo="Git">Git</span></div></article>
+      <article class="card service-card rv"><div class="service-top"><span class="service-icon">✣</span><span class="service-index">07 / 08</span></div><h3>UI &amp; UX Design</h3><p>Thoughtful interfaces that make complex tasks feel clear and approachable.</p><ul><li>User flows, wireframes &amp; screen layouts</li><li>Interactive prototypes &amp; usability reviews</li><li>Responsive interfaces &amp; design systems</li></ul><div class="service-tools"><span class="chip" data-logo="F">Figma</span><span class="chip" data-logo="HTML">HTML</span><span class="chip" data-logo="CSS">CSS</span></div></article>
+      <article class="card service-card rv"><div class="service-top"><span class="service-icon">⌁</span><span class="service-index">08 / 08</span></div><h3>Data Analytics</h3><p>Organize and explore raw data to uncover patterns and support better decisions.</p><ul><li>Data cleaning, preparation &amp; validation</li><li>Exploratory analysis &amp; SQL reporting</li><li>Visual dashboards &amp; actionable insights</li></ul><div class="service-tools"><span class="chip" data-logo="Py">Python</span><span class="chip" data-logo="SQL">SQL</span><span class="chip" data-logo="pd">pandas</span></div></article>
+    </div>
+  </section>
 
-    <section id="projects">
-      <header><span class="label">Projects</span><h2>Selected work</h2></header>
-      <div class="projects">
-        <article class="card project">
-          <h3><mark class="ph">Capstone project title</mark></h3>
-          <div class="meta"><span class="mono">Role: <mark class="ph">your role</mark></span><span class="mono">Stack: <mark class="ph">PHP · MySQL · JS</mark></span></div>
-          <p><mark class="ph">One or two sentences: what problem it solves, who uses it, and what you built.</mark></p>
-          <a href="https://github.com/jovanietoregosa/Portfolio" target="_blank" rel="noopener">View on GitHub</a>
-        </article>
-        <article class="card project">
-          <h3>App Dev: Cutify</h3>
-          <div class="meta"><span class="mono">Role: Developer</span><span class="mono">Stack: Android Studio &amp; Firebase Console</span></div>
-          <p>Cutify is an Android barbershop queueing app where customers book a barber and follow the queue, while barbers and a super admin manage the line and staff.</p>
-          <div class="project-actions">
-            <a href="https://github.com/jovanietoregosa/AppDev" target="_blank" rel="noopener">View on GitHub</a>
-            <a href="https://jtorrs.github.io/cutify-landing/">About App</a>
-          </div>
-        </article>
-        <article class="card project">
-          <h3><mark class="ph">Another project</mark></h3>
-          <div class="meta"><span class="mono">Role: <mark class="ph">your role</mark></span><span class="mono">Stack: <mark class="ph">tools used</mark></span></div>
-          <p><mark class="ph">Short description and the result.</mark></p>
-        </article>
+  <section id="skills">
+    <div class="sec-head rv"><span class="label">Core competencies</span><h2>Technical Skills Profile</h2></div>
+    <div class="ticker rv" aria-hidden="true"><div class="track" id="track"></div></div>
+    <div class="skills">
+      <div class="card skill-card rv"><h3><span class="skill-icon">✦</span>AI Tools</h3><div class="chips"><span class="chip" data-logo="✦">Gemini</span><span class="chip" data-logo="◎">Codex</span><span class="chip" data-logo="✺">Claude</span><span class="chip" data-logo="◉">PyTorch</span><span class="chip" data-logo="TF">TensorFlow</span><span class="chip" data-logo="CV">OpenCV</span></div></div>
+      <div class="card skill-card rv"><h3><span class="skill-icon">▣</span>Frontend</h3><div class="chips"><span class="chip" data-logo="R">React.js</span><span class="chip" data-logo="JS">JavaScript</span><span class="chip" data-logo="TS">TypeScript</span><span class="chip" data-logo="HTML">HTML5</span><span class="chip" data-logo="CSS">CSS3</span><span class="chip" data-logo="TW">Tailwind CSS</span><span class="chip" data-logo="F">Flutter</span><span class="chip" data-logo="V">Vite</span></div></div>
+      <div class="card skill-card rv"><h3><span class="skill-icon">▤</span>Backend</h3><div class="chips"><span class="chip" data-logo="N">Node.js</span><span class="chip" data-logo="L">Laravel</span><span class="chip" data-logo="Py">Python</span><span class="chip" data-logo="PHP">PHP</span><span class="chip" data-logo="J">Java</span><span class="chip" data-logo="C">C</span><span class="chip" data-logo="D">Dart</span><span class="chip" data-logo="WP">WordPress</span><span class="chip" data-logo="Git">Git &amp; GitHub</span></div></div>
+      <div class="card skill-card rv"><h3><span class="skill-icon">⌘</span>APIs</h3><div class="chips"><span class="chip" data-logo="API">RESTful APIs</span><span class="chip" data-logo="P">Postman</span><span class="chip" data-logo="F">FastAPI</span><span class="chip" data-logo="G">GraphQL</span><span class="chip" data-logo="S">Swagger / OpenAPI</span></div></div>
+      <div class="card skill-card rv"><h3><span class="skill-icon">▤</span>Database</h3><div class="chips"><span class="chip" data-logo="SQL">MySQL</span><span class="chip" data-logo="M">MongoDB</span><span class="chip" data-logo="SQL">SQL</span><span class="chip" data-logo="F">Firebase</span><span class="chip" data-logo="DB">Relational Schemas</span><span class="chip" data-logo="V">Vercel</span></div></div>
+      <div class="card skill-card rv"><h3><span class="skill-icon">♣</span>Professional and Core</h3><div class="chips"><span class="chip" data-logo="✦">Problem-Solving</span><span class="chip" data-logo="✓">Project Management</span><span class="chip" data-logo="▥">Data Analysis</span><span class="chip" data-logo="▣">Communication</span><span class="chip" data-logo="↻">Adaptability</span><span class="chip" data-logo="◷">Time Management</span><span class="chip" data-logo="⚑">Digital Marketing</span><span class="chip" data-logo="⌘">Tech Literacy</span></div></div>
+    </div>
+  </section>
+
+  <section id="projects">
+    <div class="sec-head rv"><span class="label">Projects</span><h2>Selected work</h2></div>
+    <article class="card project rv">
+      <div class="info">
+        <span class="label">Android app</span>
+        <h3>Cutify</h3>
+        <div class="meta"><span>Role: <b>Developer</b></span><span>Stack: <b>Android Studio · Java</b></span></div>
+        <p>A barbershop queueing app. Customers see which barbers are on duty, book one, and check the queue. Barbers handle walk-ins and mark customers done or cancelled. A super admin manages the staff accounts.</p>
+        <div class="roles"><span class="chip">User</span><span class="chip">Admin (barber)</span><span class="chip">Super Admin</span></div>
+        <div class="cta" style="margin-top:6px"><a class="btn ghost" href="https://github.com/jovanietoregosa/AppDev" target="_blank" rel="noopener">View on GitHub</a><a class="btn ghost" href="https://jtorrs.github.io/cutify-landing" target="_blank" rel="noopener">View Cutify</a></div>
       </div>
-    </section>
-
-    <section id="education">
-      <header><span class="label">Education</span><h2>Background</h2></header>
-      <div class="timeline card">
-        <div class="row">
-          <span class="mono">2022 – present</span>
-          <div><h3>BS Information Technology</h3><p>Bukidnon State University. Currently in fourth year.</p></div>
+      <div class="console" aria-label="How the Cutify queue works">
+        <img class="console-logo" src="cutify-logo.png" alt="Cutify logo">
+        <div class="bar"><i></i><i></i><i></i><span>queue.fifo</span></div>
+        <div class="queue">
+          <div class="q now"><span class="n">1</span>Customer<em>now serving</em></div>
+          <div class="q"><span class="n">2</span>Customer<em>next</em></div>
+          <div class="q"><span class="n">3</span>Walk-in<em>waiting</em></div>
         </div>
-        <div class="row">
-          <span class="mono"><mark class="ph">Year</mark></span>
-          <div><h3><mark class="ph">Certificate, seminar or training</mark></h3><p><mark class="ph">Issuer and what you learned.</mark></p></div>
+        <div class="note">first in, first out</div>
+      </div>
+    </article>
+    <article class="card project next rv">
+      <div class="info">
+        <span class="label">Capstone Project</span>
+        <h3>IoT-Powered Attendance Monitoring with Geotagging and Geolocation to Address Student Truancy</h3>
+        <div class="meta"><span>Role: <b>One of the Developers</b></span></div>
+        <p>Our capstone project is about developing an IoT-powered attendance monitoring system that uses RFID, GPS, geotagging, and geolocation to address student truancy. The system allows students to scan their RFID IDs when entering or leaving the school and verifies their location to make sure they are within the authorized school premises. Parents receive SMS notifications about their children's entry and exit, while teachers and administrators can monitor attendance through a web-based dashboard.</p>
+        <p>The main goal is to improve attendance accuracy, prevent proxy attendance and unauthorized exits, and help parents become more aware of their children's school attendance and safety.</p>
+        <div class="cta" style="margin-top:6px"><a class="btn ghost" href="https://iotpowered.online" target="_blank" rel="noopener">View Project</a></div>
+      </div>
+      <div class="capstone-flow">
+        <span class="label">How the system works</span>
+        <div class="capstone-step"><h4>Step 1: RFID Scanning</h4><p>The student scans their RFID ID when entering or leaving through the school gate.</p></div>
+        <div class="capstone-step"><h4>Step 2: GPS and Geolocation</h4><p>The IoT device collects GPS coordinates and checks whether the student is within the authorized school area.</p></div>
+        <div class="capstone-step"><h4>Step 3: Attendance Validation</h4><p>The system validates the ID, location, and time before recording the attendance.</p></div>
+        <div class="capstone-step"><h4>Step 4: Parent Notification</h4><p>Parents receive an SMS notification when their child enters or leaves the school.</p></div>
+      </div>
+    </article>
+  </section>
+
+  <section id="education">
+    <div class="sec-head rv"><span class="label">Education</span><h2>Background</h2></div>
+    <div class="card timeline rv">
+      <div class="row"><span class="mono">2022 – present</span><div><h3>BS Information Technology</h3><p>Bukidnon State University. Currently in fourth year.</p></div></div>
+      <div class="row"><span class="mono">2026</span><div><h3>Campus DEVCON Recognition</h3><p>Certificate of Recognition from the SUI Code Camp at Bukidnon State University.</p><img class="certificate-image" src="certificate-devcon.png" alt="Certificate of Recognition for Jovanie Torregosa"></div></div>
+    </div>
+  </section>
+
+  <section id="contact">
+    <div class="card contact-card rv">
+      <div>
+        <span class="label" style="color:var(--accent)">Contact</span>
+        <h2 style="margin-top:10px">Let's work <span>together.</span></h2>
+        <p style="margin-top:16px">I am looking for an IT OJT placement. Send me a message and I will reply as soon as I can.</p>
+      </div>
+      <dl class="list">
+        <div class="item"><dt class="label">Email</dt><dd id="email"><a href="mailto:torregosajovanie3@gmail.com">torregosajovanie3@gmail.com</a></dd><button class="copy" type="button" data-copy="email">Copy</button></div>
+        <div class="item"><dt class="label">Phone</dt><dd><a href="tel:+639514880623">09514880623</a></dd></div>
+        <div class="item"><dt class="label">GitHub</dt><dd><a href="https://github.com/jovanietoregosa" target="_blank" rel="noopener">github.com/jovanietoregosa</a></dd></div>
+        <div class="item"><dt class="label">LinkedIn</dt><dd>Updating</dd></div>
+        <div class="item"><dt class="label">Location</dt><dd>Bukidnon, Philippines</dd></div>
+      </dl>
+    </div>
+    <div class="card message-card rv">
+      <h3>Send a Message</h3>
+      <p>Send me a direct note and I'll get back to you promptly.</p>
+      <form class="message-form" id="messageForm">
+        <div class="message-fields">
+          <label>Your Name<input name="name" type="text" placeholder="e.g. Maria Santos" required></label>
+          <label>Your Email<input name="email" type="email" placeholder="e.g. maria@example.com" required></label>
+          <label class="full">Subject<input name="subject" type="text" placeholder="e.g. Project Inquiry or Technical Role" required></label>
+          <label class="full">Message<textarea name="message" placeholder="Write your message here..." required></textarea></label>
         </div>
-      </div>
-    </section>
-
-    <section id="ojt">
-      <header><span class="label">OJT</span><h2>What I bring</h2></header>
-      <div class="offer">
-        <div class="card"><h3>Willing to learn</h3><p>I pick up new tools quickly and ask questions early instead of guessing.</p></div>
-        <div class="card"><h3>Reliable</h3><p>I meet deadlines, follow procedures and keep my work documented.</p></div>
-        <div class="card"><h3>Team ready</h3><p>I have worked in group projects and use Git to collaborate with others.</p></div>
-      </div>
-    </section>
-
-    <section id="contact" class="contact">
-      <header><span class="label">Contact</span><h2>Let's talk</h2></header>
-      <div class="card">
-        <dl>
-          <div class="item"><dt class="label">Email</dt><dd id="email"><mark class="ph">your.email@example.com</mark></dd><button class="copy" type="button" data-copy="email">Copy</button></div>
-          <div class="item"><dt class="label">Phone</dt><dd><mark class="ph">09XX XXX XXXX</mark></dd></div>
-          <div class="item"><dt class="label">GitHub</dt><dd><mark class="ph">github.com/username</mark></dd></div>
-          <div class="item"><dt class="label">LinkedIn</dt><dd><mark class="ph">linkedin.com/in/username</mark></dd></div>
-          <div class="item"><dt class="label">Location</dt><dd>Bukidnon, Philippines</dd></div>
-        </dl>
-      </div>
-    </section>
-  </main>
+        <button class="btn ghost" type="submit">➤ Send Message</button>
+      </form>
+    </div>
+  </section>
 
   <footer>
-    <span>© 2026 Jovanie T. Torregosa</span>
+    <span>© <span id="yr">2026</span> Jovanie T. Torregosa</span>
     <span class="mono">BSIT · Bukidnon State University</span>
   </footer>
-</div>
+</main>
 
 <script>
-document.querySelectorAll('.card, .project, .photo').forEach(function (el) {
-  el.addEventListener('pointermove', function (event) {
-    var rect = el.getBoundingClientRect();
-    var x = (event.clientX - rect.left) / rect.width;
-    var y = (event.clientY - rect.top) / rect.height;
-    el.style.setProperty('--pointer-x', (x * 100) + '%');
-    el.style.setProperty('--pointer-y', (y * 100) + '%');
-    var rotateX = ((0.5 - y) * 8).toFixed(2);
-    var rotateY = ((x - 0.5) * 10).toFixed(2);
-    el.style.transform = 'perspective(1000px) rotateX(' + rotateX + 'deg) rotateY(' + rotateY + 'deg) translateY(-3px)';
-  });
-  el.addEventListener('pointerleave', function () {
-    el.style.removeProperty('--pointer-x');
-    el.style.removeProperty('--pointer-y');
-    el.style.transform = '';
-  });
-});
+(function () {
+  var reduce = window.matchMedia && matchMedia('(prefers-reduced-motion: reduce)').matches;
+  document.getElementById('yr').textContent = new Date().getFullYear();
 
-document.querySelectorAll('.copy').forEach(function (btn) {
-  btn.addEventListener('click', function () {
-    var el = document.getElementById(btn.dataset.copy);
-    var text = el ? el.textContent.trim() : '';
-    var done = function () { var old = btn.textContent; btn.textContent = 'Copied'; setTimeout(function () { btn.textContent = old; }, 1500); };
-    try {
-      navigator.clipboard.writeText(text).then(done, function () {
-        var r = document.createRange(); r.selectNodeContents(el);
-        var s = window.getSelection(); s.removeAllRanges(); s.addRange(r);
+  // skills ticker (duplicated for a seamless loop)
+  var items = ['Android Studio','Java','XML','HTML','CSS','JavaScript','Git','GitHub','GitHub Pages','VS Code'];
+  var track = document.getElementById('track');
+  (items.concat(items)).forEach(function (t) { var s = document.createElement('span'); s.className = 'tick'; s.textContent = t; track.appendChild(s); });
+
+  // big marquee words (duplicated for a seamless loop)
+  var mega = document.getElementById('mega');
+  var mw = ['Build Application', 'WebDev', 'Code'];
+  mw.concat(mw).concat(mw).concat(mw).forEach(function (t) { var s = document.createElement('span'); s.textContent = t; mega.appendChild(s); });
+
+  // scroll progress bar
+  var bar = document.getElementById('progress'), ticking = false;
+  function setBar() {
+    var max = document.documentElement.scrollHeight - innerHeight;
+    bar.style.transform = 'scaleX(' + (max > 0 ? Math.min(1, scrollY / max) : 0) + ')';
+    ticking = false;
+  }
+  addEventListener('scroll', function () { if (!ticking) { ticking = true; requestAnimationFrame(setBar); } }, { passive: true });
+  setBar();
+
+  // 3D tilt on the photo, and magnetic primary buttons (desktop pointers only)
+  var fine = window.matchMedia && matchMedia('(hover: hover) and (pointer: fine)').matches;
+  if (fine && !reduce) {
+    var tl = document.getElementById('tilt'), pt = tl.parentNode;
+    pt.addEventListener('pointermove', function (e) {
+      var r = pt.getBoundingClientRect(), x = (e.clientX - r.left) / r.width - .5, y = (e.clientY - r.top) / r.height - .5;
+      tl.style.transform = 'rotateY(' + (x * 18) + 'deg) rotateX(' + (-y * 18) + 'deg)';
+    });
+    pt.addEventListener('pointerleave', function () { tl.style.transform = ''; });
+    document.querySelectorAll('.btn.primary').forEach(function (b) {
+      b.addEventListener('pointermove', function (e) {
+        var r = b.getBoundingClientRect();
+        b.style.translate = ((e.clientX - r.left - r.width / 2) * .25) + 'px ' + ((e.clientY - r.top - r.height / 2) * .35) + 'px';
       });
-    } catch (e) {
-      var r = document.createRange(); r.selectNodeContents(el);
-      var s = window.getSelection(); s.removeAllRanges(); s.addRange(r);
+      b.addEventListener('pointerleave', function () { b.style.translate = ''; });
+    });
+  }
+
+  // typing effect
+  var words = ['Web Developer', 'Network Engineer', 'Application Developer', 'Graphic Designer'];
+  var el = document.getElementById('typed');
+  if (!reduce) {
+    var w = 0, c = 0, del = false;
+    (function tick() {
+      var word = words[w];
+      el.textContent = word.slice(0, c);
+      if (!del && c === word.length) { del = true; return setTimeout(tick, 1400); }
+      if (del && c === 0) { del = false; w = (w + 1) % words.length; return setTimeout(tick, 300); }
+      c += del ? -1 : 1;
+      setTimeout(tick, del ? 40 : 85);
+    })();
+  }
+
+  // cursor spotlight
+  if (!reduce) {
+    var spot = document.documentElement;
+    addEventListener('pointermove', function (e) {
+      spot.style.setProperty('--mx', e.clientX + 'px'); spot.style.setProperty('--my', e.clientY + 'px');
+    }, { passive: true });
+  }
+
+  // reveal on scroll (content stays visible if JS or IntersectionObserver is unavailable)
+  if ('IntersectionObserver' in window && !reduce) {
+    document.documentElement.classList.add('js');
+    var io = new IntersectionObserver(function (es) {
+      es.forEach(function (e) { if (e.isIntersecting) { e.target.classList.add('in'); io.unobserve(e.target); } });
+    }, { threshold: .12 });
+    document.querySelectorAll('.rv').forEach(function (n) { io.observe(n); });
+    setTimeout(function () { document.querySelectorAll('.rv').forEach(function (n) { n.classList.add('in'); }); }, 4000);
+  }
+
+  // highlight the current section in the nav
+  var links = document.querySelectorAll('.links a');
+  var sections = document.querySelectorAll('main.wrap > section[id]');
+  function showHome(updateUrl) {
+    document.body.classList.remove('section-focus');
+    document.body.classList.add('home-focus');
+    sections.forEach(function (section) { section.classList.remove('active-section'); });
+    links.forEach(function (link) { link.classList.toggle('on', link.getAttribute('href') === '#top'); });
+    if (updateUrl) history.pushState(null, '', '#top');
+    scrollTo(0, 0);
+  }
+  function showSection(id, updateUrl) {
+    if (id === 'top') {
+      showHome(updateUrl);
+      return;
     }
+    var target = document.getElementById(id);
+    if (!target) return;
+    document.body.classList.remove('home-focus');
+    document.body.classList.add('section-focus');
+    sections.forEach(function (section) { section.classList.toggle('active-section', section === target); });
+    links.forEach(function (link) { link.classList.toggle('on', link.getAttribute('href') === '#' + id); });
+    if (updateUrl) history.pushState(null, '', '#' + id);
+    scrollTo(0, 0);
+  }
+  links.forEach(function (link) {
+    link.addEventListener('click', function (event) {
+      event.preventDefault();
+      showSection(link.getAttribute('href').slice(1), true);
+    });
   });
-});
+  document.querySelector('.brand').addEventListener('click', function (event) {
+    event.preventDefault();
+    showHome(true);
+  });
+  addEventListener('popstate', function () {
+    var id = location.hash.slice(1);
+    if (id) showSection(id, false);
+    else showHome(false);
+  });
+  if (location.hash && document.getElementById(location.hash.slice(1))) showSection(location.hash.slice(1), false);
+  else showHome(false);
+  if ('IntersectionObserver' in window) {
+    var so = new IntersectionObserver(function (es) {
+      es.forEach(function (e) {
+        if (e.isIntersecting && document.body.classList.contains('section-focus')) links.forEach(function (a) { a.classList.toggle('on', a.getAttribute('href') === '#' + e.target.id); });
+      });
+    }, { rootMargin: '-45% 0px -50% 0px' });
+    document.querySelectorAll('section[id]').forEach(function (s) { so.observe(s); });
+  }
+
+  // copy buttons
+  var messageForm = document.getElementById('messageForm');
+  if (messageForm) messageForm.addEventListener('submit', function (event) {
+    event.preventDefault();
+    var data = new FormData(messageForm);
+    var body = 'Name: ' + data.get('name') + '\nEmail: ' + data.get('email') + '\n\n' + data.get('message');
+    location.href = 'mailto:torregosajovanie3@gmail.com?subject=' + encodeURIComponent(data.get('subject')) + '&body=' + encodeURIComponent(body);
+  });
+  document.querySelectorAll('.copy').forEach(function (btn) {
+    btn.addEventListener('click', function () {
+      var t = document.getElementById(btn.dataset.copy); if (!t) return;
+      var ok = function () { var o = btn.textContent; btn.textContent = 'Copied'; setTimeout(function () { btn.textContent = o; }, 1500); };
+      var sel = function () { var r = document.createRange(); r.selectNodeContents(t); var s = getSelection(); s.removeAllRanges(); s.addRange(r); };
+      try { navigator.clipboard.writeText(t.textContent.trim()).then(ok, sel); } catch (e) { sel(); }
+    });
+  });
+})();
 </script>
 </body>
 </html>
