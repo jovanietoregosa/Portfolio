@@ -506,9 +506,13 @@ footer { margin-top: clamp(56px, 8vw, 96px); padding-block: 24px 40px; border-to
   .landing-title { font-size: clamp(48px, 14vw, 84px); }
   .landing-subtitle { max-width: 38ch; }
   .nav-in nav { width: 100%; }
-  .links { justify-content: flex-start; gap: 4px clamp(10px, 3vw, 28px); font-size: clamp(14px, 2.2vw, 17px); }
-  .hero { grid-template-columns: minmax(0, 1fr); justify-content: start; justify-items: start; }
-  .portrait { order: -1; width: min(70%, 320px); justify-self: start; }
+  .links { justify-content: center; gap: 4px clamp(10px, 3vw, 28px); font-size: clamp(14px, 2.2vw, 17px); }
+  .hero { grid-template-columns: minmax(0, 1fr); justify-content: center; justify-items: center; text-align: center; }
+  .hero > div:first-child { display: flex; flex-direction: column; align-items: center; }
+  .hero p { text-align: center; }
+  .portrait { order: -1; width: min(70%, 320px); justify-self: center; }
+  .hero .cta { justify-content: center; }
+  .sec-head { justify-content: center; text-align: center; }
   .bento { grid-template-columns: minmax(0, 1fr); }
   .skills { grid-template-columns: minmax(0, 1fr); }
   .service-grid { grid-template-columns: minmax(0, 1fr); }
@@ -538,7 +542,7 @@ footer { margin-top: clamp(56px, 8vw, 96px); padding-block: 24px 40px; border-to
   .btn { width: 100%; justify-content: center; }
   .nav-in { justify-content: flex-end; }
   .brand { font-size: 16px; margin-right: auto; }
-  .links { width: 100%; font-size: clamp(13px, 3.5vw, 15px); gap: 2px clamp(8px, 4vw, 18px); justify-content: flex-start; text-align: left; }
+  .links { width: 100%; font-size: clamp(13px, 3.5vw, 15px); gap: 2px clamp(8px, 4vw, 18px); justify-content: center; text-align: center; }
   .item { grid-template-columns: minmax(0, 1fr) auto; } .item dt { grid-column: 1 / -1; }
   .f1 { left: 0; } .f2 { right: 0; }
 }
