@@ -277,9 +277,11 @@ body.landing-open { overflow: hidden; }
 #landing {
   position: fixed; inset: 0; z-index: 200; display: grid; place-items: center;
   min-height: 100vh; min-height: 100svh; min-height: 100dvh;
+  scrollbar-width: none; -ms-overflow-style: none;
   overflow-x: hidden; overflow-y: auto; background: var(--bg); isolation: isolate;
   transition: opacity .7s ease, visibility .7s ease;
 }
+#landing::-webkit-scrollbar { display: none; width: 0; height: 0; }
 #landing::before {
   content: ""; position: absolute; inset: 0; z-index: -2;
   background: linear-gradient(rgba(46,230,214,.07) 1px, transparent 1px), linear-gradient(90deg, rgba(46,230,214,.07) 1px, transparent 1px);
