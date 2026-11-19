@@ -272,6 +272,120 @@ section { padding-block: clamp(56px, 8vw, 104px) 0; scroll-margin-top: 80px; }
 .form-status.success { color: var(--accent); border-color: var(--accent); }
 .form-status.error { color: var(--accent2); border-color: var(--accent2); }
 
+/* ---------- landing intro ---------- */
+body.landing-open { overflow: hidden; }
+#landing {
+  position: fixed; inset: 0; z-index: 200; display: grid; place-items: center;
+  overflow: hidden; background: var(--bg); isolation: isolate;
+  transition: opacity .7s ease, visibility .7s ease;
+}
+#landing::before {
+  content: ""; position: absolute; inset: 0; z-index: -2;
+  background: linear-gradient(rgba(46,230,214,.07) 1px, transparent 1px), linear-gradient(90deg, rgba(46,230,214,.07) 1px, transparent 1px);
+  background-size: 56px 56px; mask-image: linear-gradient(to bottom, #000, transparent 88%);
+  animation: landingGrid 12s linear infinite;
+}
+#landing::after {
+  content: ""; position: absolute; z-index: -1; width: 70vmin; height: 70vmin; border-radius: 50%;
+  background: radial-gradient(circle, color-mix(in srgb, var(--accent) 22%, transparent), transparent 66%);
+  filter: blur(12px); animation: landingGlow 8s ease-in-out infinite alternate;
+}
+.universe { position: absolute; inset: 0; z-index: -1; opacity: .75; pointer-events: none; background:
+  radial-gradient(circle at 18% 24%, rgba(255,255,255,.9) 0 1px, transparent 1.5px),
+  radial-gradient(circle at 72% 18%, rgba(255,255,255,.75) 0 1px, transparent 1.5px),
+  radial-gradient(circle at 42% 70%, rgba(46,230,214,.8) 0 1px, transparent 1.5px),
+  radial-gradient(circle at 88% 62%, rgba(255,122,89,.75) 0 1px, transparent 1.5px),
+  radial-gradient(circle at 58% 42%, rgba(255,255,255,.65) 0 1px, transparent 1.5px),
+  radial-gradient(ellipse at 20% 55%, rgba(46,230,214,.14), transparent 42%),
+  radial-gradient(ellipse at 82% 35%, rgba(255,122,89,.12), transparent 40%);
+  background-size: 180px 160px, 240px 220px, 210px 190px, 260px 230px, 150px 170px, 100% 100%, 100% 100%;
+  animation: universeDrift 14s ease-in-out infinite alternate, universeTwinkle 4s ease-in-out infinite alternate;
+}
+.site-universe { position: fixed; inset: 0; z-index: -1; opacity: .5; pointer-events: none; background:
+  radial-gradient(circle at 12% 18%, rgba(255,255,255,.65) 0 1px, transparent 1.5px),
+  radial-gradient(circle at 76% 28%, rgba(46,230,214,.55) 0 1px, transparent 1.5px),
+  radial-gradient(circle at 48% 82%, rgba(255,255,255,.5) 0 1px, transparent 1.5px),
+  radial-gradient(ellipse at 10% 65%, rgba(46,230,214,.08), transparent 38%),
+  radial-gradient(ellipse at 90% 35%, rgba(255,122,89,.07), transparent 36%);
+  background-size: 210px 190px, 260px 230px, 190px 210px, 100% 100%, 100% 100%;
+  animation: siteUniverseDrift 24s ease-in-out infinite alternate;
+}
+.landing-orb { position: absolute; border-radius: 50%; filter: blur(80px); opacity: .5; pointer-events: none; }
+.landing-orb.one { width: 34vmax; height: 34vmax; left: -12vmax; top: -14vmax; background: var(--accent); }
+.landing-orb.two { width: 28vmax; height: 28vmax; right: -10vmax; bottom: -12vmax; background: var(--accent2); }
+.landing-inner { position: relative; z-index: 2; width: min(1080px, calc(100% - 40px)); display: grid; grid-template-columns: 1fr auto; align-items: center; gap: clamp(36px, 8vw, 110px); }
+.shooting-star { position: absolute; z-index: 1; width: 130px; height: 2px; border-radius: 999px; opacity: 0; background: linear-gradient(90deg, transparent, color-mix(in srgb, var(--accent) 35%, white), white); box-shadow: 0 0 10px var(--accent); transform: rotate(35deg); animation: shootingStar 7s linear infinite; pointer-events: none; }
+.shooting-star::after { content: ""; position: absolute; right: -3px; top: 50%; width: 6px; height: 6px; border-radius: 50%; background: #fff; box-shadow: 0 0 8px 3px var(--accent), 0 0 16px 4px rgba(255,255,255,.7); transform: translateY(-50%); }
+.meteorite { position: absolute; z-index: 1; top: -5%; left: -12%; width: 145px; height: 3px; opacity: 0; border-radius: 999px; background: linear-gradient(90deg, transparent, rgba(255,115,55,.35) 45%, #ffb347 78%, #fff 100%); box-shadow: 0 0 8px 2px rgba(255,130,55,.65), 0 0 20px 5px rgba(255,82,57,.25); transform: rotate(35deg); animation: shootingStar 4.8s linear infinite; pointer-events: none; }
+.meteorite::before { content: ""; position: absolute; right: -3px; top: 50%; width: 8px; height: 8px; border-radius: 50%; background: #fff7d6; box-shadow: 0 0 6px 3px #ffb347, 0 0 14px 4px rgba(255,82,57,.6); transform: translateY(-50%); }
+.meteorite.one { left: -10%; animation-delay: 0s; }
+.meteorite.two { left: -22%; width: 115px; height: 2px; animation-delay: 5.6s; }
+.meteorite.three { left: -16%; width: 170px; height: 4px; animation-delay: 11.2s; }
+.meteorite.four { left: -28%; width: 100px; height: 2px; animation-delay: 16.8s; }
+.shooting-star.one { top: 8%; left: -8%; animation-delay: 1s; }
+.shooting-star.two { top: 20%; left: -14%; width: 95px; animation-delay: 4s; animation-duration: 8s; }
+.shooting-star.three { top: 2%; left: 12%; width: 80px; animation-delay: 6s; animation-duration: 9s; }
+.shooting-star.four { top: 32%; left: -10%; width: 115px; animation-delay: 2.5s; animation-duration: 7.5s; }
+.shooting-star.five { top: 46%; left: 5%; width: 70px; animation-delay: 8s; animation-duration: 8.5s; }
+.shooting-star.six { top: 12%; left: 24%; width: 105px; animation-delay: 10s; animation-duration: 10s; }
+.shooting-star.seven { top: 38%; left: -12%; width: 88px; animation-delay: 12s; animation-duration: 7s; }
+.shooting-star.eight { top: 4%; left: 34%; width: 125px; animation-delay: 14s; animation-duration: 9s; }
+.shooting-star.nine { top: 58%; left: -16%; width: 105px; animation-delay: 3s; animation-duration: 8s; }
+.shooting-star.ten { top: 26%; left: 18%; width: 75px; animation-delay: 7s; animation-duration: 7.5s; }
+.shooting-star.eleven { top: 68%; left: -10%; width: 120px; animation-delay: 11s; animation-duration: 9s; }
+.shooting-star.twelve { top: 14%; left: 40%; width: 65px; animation-delay: 16s; animation-duration: 6.5s; }
+.landing-copy { position: relative; }
+.landing-kicker { display: inline-flex; align-items: center; gap: 10px; color: var(--accent); font-family: var(--font-mono); font-size: 12px; letter-spacing: .16em; text-transform: uppercase; }
+.landing-kicker::before { content: ""; width: 30px; height: 1px; background: var(--accent); box-shadow: 0 0 12px var(--accent); }
+.landing-title { margin-top: 18px; max-width: 760px; font-family: var(--font-display); font-size: clamp(52px, 9vw, 120px); line-height: .88; letter-spacing: -.065em; }
+.landing-title span { display: block; color: transparent; background: linear-gradient(110deg, var(--accent), var(--ink) 48%, var(--accent2)); background-clip: text; -webkit-background-clip: text; }
+.landing-subtitle { margin-top: 24px; color: var(--muted); font-size: clamp(15px, 1.4vw, 20px); }
+.landing-enter { position: relative; isolation: isolate; margin-top: 34px; display: inline-flex; align-items: center; gap: 12px; cursor: pointer; animation: landingButtonFloat 3s ease-in-out infinite; }
+.landing-enter::before { content: ""; position: absolute; z-index: -1; inset: -6px; border-radius: 16px; padding: 2px; background: conic-gradient(from var(--spin, 0deg), var(--accent), transparent 25%, var(--accent2) 50%, transparent 75%, var(--accent)); -webkit-mask: linear-gradient(#000 0 0) content-box, linear-gradient(#000 0 0); -webkit-mask-composite: xor; mask-composite: exclude; animation: spin 3s linear infinite; pointer-events: none; }
+.landing-enter::after { content: "↗"; font-size: 20px; transition: transform .25s; }
+.landing-enter:hover::after { transform: translate(4px, -4px); }
+.landing-status { margin-top: 18px; color: var(--muted); font-family: var(--font-mono); font-size: 11px; letter-spacing: .08em; }
+.landing-status b { color: var(--accent); font-weight: 500; }
+.landing-avatar { position: relative; width: clamp(260px, 32vw, 420px); aspect-ratio: 1; border: 1px solid color-mix(in srgb, var(--accent) 55%, transparent); border-radius: 50%; padding: 10px; box-shadow: 0 0 0 16px color-mix(in srgb, var(--accent) 5%, transparent), 0 0 90px color-mix(in srgb, var(--accent) 25%, transparent); animation: landingFloat 5s ease-in-out infinite; }
+.landing-avatar::before, .landing-avatar::after { content: ""; position: absolute; border: 1px solid color-mix(in srgb, var(--accent2) 60%, transparent); border-radius: 50%; pointer-events: none; }
+.landing-avatar::before { inset: -20px; border-left-color: transparent; border-bottom-color: transparent; transform: rotate(34deg); animation: landingOrbit 8s linear infinite; }
+.landing-avatar::after { inset: -34px; border-right-color: transparent; border-top-color: transparent; opacity: .5; transform: rotate(-22deg); animation: landingOrbit 12s linear infinite reverse; }
+.landing-avatar { background: color-mix(in srgb, var(--card-solid) 80%, transparent); }
+.landing-cut { position: absolute; z-index: 1; top: -36%; left: 0; width: 100%; height: 136%; background: url("photo-cutout.png") center bottom / 101% auto no-repeat; clip-path: inset(0 0 26.5% 0 round 50%); }
+.landing-portrait { width: clamp(280px, 30vw, 520px); }
+#landing.is-hidden { opacity: 0; visibility: hidden; pointer-events: none; }
+#landing.sucked .landing-inner,
+#landing.sucked .landing-orb,
+#landing.sucked .shooting-star,
+#landing.sucked .meteorite { animation: suckedIntoHole .95s cubic-bezier(.7,0,1,.35) forwards; }
+.black-hole { position: absolute; z-index: 3; left: var(--hole-x, 50%); top: var(--hole-y, 50%); width: 24px; height: 24px; border-radius: 50%; background: #000; opacity: 0; transform: translate(-50%, -50%) scale(.2); box-shadow: 0 0 0 5px rgba(255,255,255,.08), 0 0 25px 8px rgba(0,0,0,.95), 0 0 80px 25px rgba(0,0,0,.8); pointer-events: none; }
+.black-hole::before { content: ""; position: absolute; inset: -22px; border-radius: 50%; border: 3px solid transparent; border-top-color: var(--accent); border-right-color: var(--accent2); filter: blur(1px); animation: holeSpin .75s linear infinite; }
+.black-hole::after { content: ""; position: absolute; inset: -8px; border-radius: 50%; background: radial-gradient(circle, #000 35%, transparent 70%); box-shadow: 0 0 22px 8px rgba(46,230,214,.35); animation: holePulse 1s ease-in-out infinite alternate; }
+#landing.sucked .black-hole { animation: holeExpand 1.25s cubic-bezier(.55,0,.1,1) forwards; }
+.avatar, .portrait { cursor: pointer; }
+@keyframes landingGrid { to { transform: translate(56px, 56px); } }
+@keyframes landingGlow { to { transform: scale(1.18); opacity: .65; } }
+@keyframes landingFloat { 50% { transform: translateY(-12px) rotate(2deg); } }
+@keyframes landingOrbit { to { transform: rotate(394deg); } }
+@keyframes shootingStar {
+  0%, 8% { opacity: 0; transform: translate(0, -30px) rotate(35deg); }
+  16% { opacity: 1; }
+  48% { opacity: .85; }
+  72%, 100% { opacity: 0; transform: translate(72vw, 72vh) rotate(35deg); }
+}
+@keyframes meteorFall {
+  0% { transform: translate(0, 0) rotate(145deg); opacity: 1; }
+  100% { transform: translate(110vw, 430px) rotate(145deg); opacity: 0; }
+}
+@keyframes universeDrift { to { transform: scale(1.1) translate(-2%, 2%); opacity: .95; } }
+@keyframes universeTwinkle { 50% { filter: brightness(1.35); } 100% { filter: brightness(.9); } }
+@keyframes siteUniverseDrift { to { transform: scale(1.05) translate(1%, -1%); opacity: .75; } }
+@keyframes landingButtonFloat { 50% { translate: 0 -4px; } }
+@keyframes suckedIntoHole { to { opacity: 0; transform: translate(var(--hole-dx, 0), var(--hole-dy, 0)) scale(.05) rotate(-24deg); filter: blur(8px); } }
+@keyframes holeExpand { 0% { opacity: 0; transform: translate(-50%, -50%) scale(.2); } 18% { opacity: 1; } 100% { opacity: 1; transform: translate(-50%, -50%) scale(170); } }
+@keyframes holeSpin { to { transform: rotate(360deg); } }
+@keyframes holePulse { to { transform: scale(1.25) rotate(-30deg); opacity: .7; } }
+
 /* ---------- section navigation ---------- */
 body.section-focus .hero, body.section-focus .mega { display: none; }
 body.section-focus main.wrap { padding-top: 64px; }
@@ -384,6 +498,11 @@ footer { margin-top: clamp(56px, 8vw, 96px); padding-block: 24px 40px; border-to
 
 /* ---------- responsive ---------- */
 @media (max-width: 900px) {
+  .landing-inner { grid-template-columns: 1fr; text-align: center; justify-items: center; gap: 42px; }
+  .landing-copy { display: flex; flex-direction: column; align-items: center; }
+  .landing-portrait { order: -1; width: clamp(210px, 52vw, 330px); }
+  .landing-title { font-size: clamp(48px, 14vw, 84px); }
+  .landing-subtitle { max-width: 38ch; }
   .nav-in nav { width: 100%; }
   .links { justify-content: flex-start; gap: 4px clamp(10px, 3vw, 28px); font-size: clamp(14px, 2.2vw, 17px); }
   .hero { grid-template-columns: minmax(0, 1fr); justify-content: start; justify-items: start; }
@@ -404,8 +523,11 @@ footer { margin-top: clamp(56px, 8vw, 96px); padding-block: 24px 40px; border-to
   .certificate-grid { grid-template-columns: minmax(0, 1fr); }
 }
 @media (max-width: 480px) {
+  .landing-inner { width: min(100% - 32px, 420px); gap: 30px; }
+  .landing-portrait { width: 200px; }
+  .landing-enter { margin-top: 26px; }
   main.wrap { padding-top: 128px; }
-  .portrait { width: min(70%, 320px); }
+  .portrait:not(.landing-portrait) { width: min(70%, 320px); }
   .chip-f { --orbit-radius: clamp(110px, 30vw, 190px); padding: 5px 8px; max-width: calc(100vw - 48px); }
   .f3 { left: -4%; }
   .f4 { right: -4%; }
@@ -424,10 +546,32 @@ footer { margin-top: clamp(56px, 8vw, 96px); padding-block: 24px 40px; border-to
 @media (min-width: 3840px) { html { zoom: 2.6; } }
 </style>
 </head>
-<body>
+<body class="landing-open">
 <div class="bg" aria-hidden="true"><i></i><i></i><i></i></div>
 <div class="spot" aria-hidden="true"></div>
+<div class="site-universe" aria-hidden="true"></div>
 <div class="progress" id="progress" aria-hidden="true"></div>
+
+<section id="landing" aria-label="Portfolio introduction">
+  <div class="black-hole" aria-hidden="true"></div>
+  <div class="universe" aria-hidden="true"></div>
+  <i class="shooting-star one" aria-hidden="true"></i><i class="shooting-star two" aria-hidden="true"></i><i class="shooting-star three" aria-hidden="true"></i><i class="shooting-star four" aria-hidden="true"></i><i class="shooting-star five" aria-hidden="true"></i><i class="shooting-star six" aria-hidden="true"></i><i class="shooting-star seven" aria-hidden="true"></i><i class="shooting-star eight" aria-hidden="true"></i><i class="shooting-star nine" aria-hidden="true"></i><i class="shooting-star ten" aria-hidden="true"></i><i class="shooting-star eleven" aria-hidden="true"></i><i class="shooting-star twelve" aria-hidden="true"></i>
+  <i class="meteorite one" aria-hidden="true"></i><i class="meteorite two" aria-hidden="true"></i><i class="meteorite three" aria-hidden="true"></i><i class="meteorite four" aria-hidden="true"></i>
+  <div class="landing-orb one"></div><div class="landing-orb two"></div>
+  <div class="landing-inner">
+    <div class="landing-copy">
+      <span class="landing-kicker">My Portfolio</span>
+      <h1 class="landing-title">Hello, I'm <span>Jovanie.</span></h1>
+      <p class="landing-subtitle">BSIT student, developer, and creative problem solver building useful digital experiences.</p>
+      <button class="btn primary landing-enter" id="enterPortfolio" type="button">Enter Portfolio</button>
+    </div>
+    <div class="portrait landing-portrait" aria-label="Jovanie T. Torregosa">
+      <div class="tilt">
+        <div class="ring"><div class="pic"><div class="cut" role="img" aria-label="Jovanie T. Torregosa"></div></div></div>
+      </div>
+    </div>
+  </div>
+</section>
 
 <header class="nav">
   <div class="wrap nav-in">
@@ -551,7 +695,7 @@ footer { margin-top: clamp(56px, 8vw, 96px); padding-block: 24px 40px; border-to
   <section id="education">
     <div class="sec-head rv"><span class="label">Education</span><h2>Background</h2></div>
     <div class="timeline rv">
-      <div class="row"><span class="mono">2022 – present</span><div><h3>BS Information Technology</h3><p>Bukidnon State University. Currently in fourth year.</p></div></div>
+      <div class="row"><span class="mono">2023 – present</span><div><h3>BS Information Technology</h3><p>Bukidnon State University. Currently in fourth year.</p></div></div>
       <div class="certificate-grid">
         <div class="row certificate-row"><span class="mono">2026</span><div><h3>Campus DEVCON Recognition</h3><p>Certificate of Recognition from the SUI Code Camp at Bukidnon State University.</p><img class="certificate-image" src="certificate-devcon.png" alt="Certificate of Recognition for Jovanie Torregosa"><a class="btn ghost" href="devcon-sui-code-camp.pdf" target="_blank" rel="noopener" style="margin-top:16px">View Certificate</a></div></div>
         <div class="row certificate-row"><span class="mono">2025</span><div><h3>CCNA: Introduction to Networks</h3><p>Certificate of completion from Bukidnon State University through the Cisco Networking Academy program.</p><img class="certificate-image" src="certificate-completion.png" alt="CCNA: Introduction to Networks certificate for Jovanie Torregosa"><a class="btn ghost" href="certificate-completion.pdf" target="_blank" rel="noopener" style="margin-top:16px">View Certificate</a></div></div>
@@ -567,8 +711,8 @@ footer { margin-top: clamp(56px, 8vw, 96px); padding-block: 24px 40px; border-to
         <p style="margin-top:16px">I am looking for an IT OJT placement. Send me a message and I will reply as soon as I can.</p>
       </div>
       <dl class="list">
-        <div class="item"><dt class="label">Email</dt><dd id="email"><a href="mailto:torregosajovanie3@gmail.com">torregosajovanie3@gmail.com</a></dd><button class="copy" type="button" data-copy="email">Copy</button></div>
-        <div class="item"><dt class="label">Phone</dt><dd><a href="tel:+639514880623">09514880623</a></dd></div>
+        <div class="item"><dt class="label">Email</dt><dd id="email"><span style="color:var(--accent)">torregosajovanie3@gmail.com</span></dd><button class="copy" type="button" data-copy="email">Copy</button></div>
+        <div class="item"><dt class="label">Phone</dt><dd>+639514880623</dd></div>
         <div class="item"><dt class="label">GitHub</dt><dd><a href="https://github.com/jovanietoregosa" target="_blank" rel="noopener">github.com/jovanietoregosa</a></dd></div>
         <div class="item"><dt class="label">LinkedIn</dt><dd>Updating</dd></div>
         <div class="item"><dt class="label">Location</dt><dd>Bukidnon, Philippines</dd></div>
@@ -600,6 +744,32 @@ footer { margin-top: clamp(56px, 8vw, 96px); padding-block: 24px 40px; border-to
 (function () {
   var reduce = window.matchMedia && matchMedia('(prefers-reduced-motion: reduce)').matches;
   document.getElementById('yr').textContent = new Date().getFullYear();
+
+  // landing intro
+  var landing = document.getElementById('landing');
+  var enterPortfolio = document.getElementById('enterPortfolio');
+  if (landing && enterPortfolio) {
+    enterPortfolio.addEventListener('click', function () {
+      landing.style.setProperty('--hole-x', '50vw');
+      landing.style.setProperty('--hole-y', '50vh');
+      landing.classList.add('sucked');
+      setTimeout(function () {
+        landing.classList.add('is-hidden');
+        document.body.classList.remove('landing-open');
+      }, 1000);
+    });
+
+    function openLanding(event) {
+      if (event) event.preventDefault();
+      landing.classList.remove('sucked');
+      landing.classList.remove('is-hidden');
+      document.body.classList.add('landing-open');
+      scrollTo(0, 0);
+    }
+    document.querySelectorAll('.avatar, .portrait').forEach(function (profile) {
+      profile.addEventListener('click', openLanding);
+    });
+  }
 
   // skills ticker (duplicated for a seamless loop)
   var items = ['Android Studio','Java','XML','HTML','CSS','JavaScript','Git','GitHub','GitHub Pages','VS Code'];
